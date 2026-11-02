@@ -87,6 +87,7 @@ python make_arch_figure.py
 Expect several hours per stage on a CPU. `analyze_final.py` stops with an error if the re-evaluation does not
 reproduce `logs/lambda_control_results.jsonl` exactly.
 
+<<<<<<< HEAD
 ## Combined paper: Hamiltonian–Stackelberg game loops
 
 Scripts added for *Hamiltonian–Stackelberg Game Loops for Adversarial Learning* (Study A = HAD-Stack). Run them from the
@@ -167,14 +168,19 @@ numbers. `run_all.sh` / `run_all.ps1` run its full pipeline.
 `journal_paper.tex` (IEEEtran, two-column) and `refs.bib`. `figs/` holds the three regression figures; Fig. 2 is
 `results/hamiltonian_layer/hv_convergence.pdf` and Fig. 5 is `verification_second_dataset/results/f_ulb_dynamics.pdf`.
 
+=======
+>>>>>>> 75391000f36841e26fc17e00e5c42f991f5b65fe
 ## Data
 
 `fraud_dataset.csv`: 26,393 synthetic UPI/banking transactions (17.2% fraud). [Add source and licence here.
 If redistribution is not permitted, keep the file out of the repository and describe how to obtain it.]
 
+<<<<<<< HEAD
 `data/india_bond_yields_2010_2025.csv`, `data/bond_yield_technical_indicators.csv`: Indian government bond yields and
 technical indicators released with the forecasting baseline, used by the regression study.
 
+=======
+>>>>>>> 75391000f36841e26fc17e00e5c42f991f5b65fe
 ## Citation
 
 [Add the citation once the paper is published.]

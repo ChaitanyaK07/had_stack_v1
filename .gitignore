@@ -43,6 +43,7 @@ fraud_dataset.csv
 # Advisor experiments (generated)
 results_advisor/*.npz
 results_advisor_QUICK/
+<<<<<<< HEAD
 
 # Second-dataset verification: local data copy and smoke runs (creditcard.csv is not redistributed)
 verification_second_dataset/data/
@@ -64,3 +65,5 @@ paper/*.blg
 # Keep these despite the patterns above
 !verification_second_dataset/pretrained/NN_model_weights.h5
 !regression/results/*.log
+=======
+>>>>>>> 75391000f36841e26fc17e00e5c42f991f5b65fe
