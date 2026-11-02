@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+seaborn
+tensorflow>=2.15     # regression/ and replication/
+torch>=2.1           # controller_pytorch/ only
+Pillow               # replication/compare_figures.py

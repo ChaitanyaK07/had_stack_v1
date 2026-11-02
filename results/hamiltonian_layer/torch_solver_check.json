@@ -1,0 +1,34 @@
+{
+ "device": "cpu",
+ "torch": "2.15.0+cu132",
+ "cuda_available": false,
+ "max_abs_diff_mu1": 2.8609792490763984e-17,
+ "max_abs_diff_mu2": 2.8609792490763984e-17,
+ "max_abs_diff_phi": 4.5102810375396984e-17,
+ "max_abs_diff_muV": 7.6432727407235e-15,
+ "hermitian_E0_H1": [
+  -0.11180339887521668,
+  -0.11180339887521668
+ ],
+ "hermitian_E0_H2": [
+  -0.05000000000050802,
+  -0.05000000000050802
+ ],
+ "hermitian_E0_HV": [
+  -2.0005184256943522,
+  -2.000518425694352
+ ],
+ "iterations": {
+  "H1": 43,
+  "H2": 43,
+  "HV": 24
+ },
+ "numpy_one_round_ms": 52.88062199997512,
+ "torch_cpu_one_round_ms": 34.35335250003391,
+ "torch_cpu_batch5_ms": 61.99338900000839,
+ "numpy_loop5_ms": 267.4633820000736,
+ "torch_cpu_batch100_ms": 474.99642399998265,
+ "numpy_loop100_ms": 5159.577182000021,
+ "torch_cpu_batch1000_ms": 4362.654238000005,
+ "numpy_loop1000_ms": 54575.45022300007
+}
