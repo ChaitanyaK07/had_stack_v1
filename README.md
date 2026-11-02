@@ -1,4 +1,4 @@
-# HAD-Stack: Hamiltonian-Driven Stackelberg Adversarial Training for UPI Fraud Detection
+# HAD-Stack: Hamiltonian-Driven Stackelberg Adversarial Training for Fraud Detection, Bond Forecasting.
 
 Code and results for *A Hamiltonian-Stackelberg Game Approach for Fraud Detection in Digital Banking Transactions*.
 
