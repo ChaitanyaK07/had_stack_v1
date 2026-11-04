@@ -56,6 +56,11 @@ import random
 import warnings
 
 import numpy as np
+import os as _os
+# Order parameter of the two-mode self-consistent iteration: "adagb" -> Delta_j = Re<a^dag b>, Re<a^dag c>
+# (the transition fields of the derivation, Eqs. 7-8); "ab" -> <ab>, <ac> (the original release). Set HCS_ORDER to choose.
+HCS_ORDER = _os.environ.get("HCS_ORDER", "adagb")
+assert HCS_ORDER in ("ab", "adagb"), HCS_ORDER
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -104,6 +109,7 @@ class QuantumHamiltonianSolver:
         self.dim = 4
         self.a, self.a_dag, self.b, self.b_dag = self._create_operators()
         self.ab = self.a @ self.b
+        self.order_op = self.ab if HCS_ORDER == "ab" else self.a_dag @ self.b
 
     def _create_operators(self):
         a_s = np.zeros((2, 2), dtype=complex); a_s[0, 1] = 1.0
@@ -135,7 +141,7 @@ class QuantumHamiltonianSolver:
         for _ in range(max_iter):
             evals, evecs = np.linalg.eigh(_herm(self.construct_hamiltonian(delta)))
             psi0 = evecs[:, 0]
-            dc   = np.vdot(psi0, self.ab @ psi0).real
+            dc   = np.vdot(psi0, self.order_op @ psi0).real
             dn   = mixing * dc + (1 - mixing) * delta
             if abs(dn - delta) < tol:
                 break
@@ -156,6 +162,7 @@ class H2Solver:
         self.dim = 4
         self.a, self.a_dag, self.c, self.c_dag = self._create_operators()
         self.ac = self.a @ self.c
+        self.order_op = self.ac if HCS_ORDER == "ab" else self.a_dag @ self.c
 
     def _create_operators(self):
         a_s = np.zeros((2, 2), dtype=complex); a_s[0, 1] = 1.0
@@ -180,7 +187,7 @@ class H2Solver:
             H = self.construct_hamiltonian(d2)
             evals, evecs = np.linalg.eigh(H)
             psi0 = evecs[:, 0]
-            dc   = np.vdot(psi0, self.ac @ psi0).real
+            dc   = np.vdot(psi0, self.order_op @ psi0).real
             dn   = mixing * dc + (1 - mixing) * d2
             if abs(dn - d2) < tol:
                 break

@@ -2,7 +2,7 @@
 import json, os, numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); RES = os.path.join(HERE, "results")
 S = json.load(open(os.path.join(RES, "results_seeds.json"))); F = json.load(open(os.path.join(RES, "results_folds.json"))); R = S + F
-U, H, B = "Two-Head LSTM (undefended)", "HAD-Stack", "FB-AT (eps 0.6586)"
+U, H, B = "Two-Head LSTM (undefended)", "HAD-Stack", "FB-AT (eps max)"
 added = lambda m, e: m[f"wcMAE@{e}"] - m["MAE"]
 print("== Table XII (outcome): mean +- std ==")
 for grp, RR in (("folds", F), ("seeds", S)):

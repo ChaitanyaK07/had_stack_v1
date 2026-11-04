@@ -24,7 +24,7 @@ Mapping of the building blocks (HCS Table I, Study A column -> this regression i
               "detected fraud flipped"; Def. 6: robustness = share of cases where the response fails).
 All HAD-Stack hyperparameters are the paper's: AdamW(1e-4, wd 1e-4), cosine over 30 rounds,
 clip-norm 1.0, PGD-10 with alpha = 2.5 eps/10, eps_ref = 0.5, checkpoint on robust validation metric
-at eps = 0.5 (patience 6), fixed-budget comparison (eps 0.6586, lam 0.5), evaluation budgets {0.5, 1.0}.
+at eps = 0.5 (patience 6), fixed-budget comparison (eps = controller maximum, lam 0.5), evaluation budgets {0.5, 1.0}.
 """
 import argparse, copy, json, math, os, time
 DATA_DIR = os.environ.get("DATA_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data"))
@@ -43,7 +43,9 @@ from keras.callbacks import EarlyStopping
 BASE = dict(w0=0.1, w1=0.1, w2=0.1, gam1=0.1, gam2=0.1, g1=0.1, g2=0.1, E1=1.0, E2=1.0)
 _sm = np.array([[0, 1], [0, 0]], complex)
 _A, _B = np.kron(_sm, np.eye(2)), np.kron(np.eye(2), _sm)
-_O_AB = _A @ _B
+HCS_ORDER = os.environ.get("HCS_ORDER", "adagb")   # "adagb": Delta = Re<a^dag b> (Eqs. 7-8); "ab": <ab> (original release)
+assert HCS_ORDER in ("ab", "adagb"), HCS_ORDER
+_O_AB = _A @ _B if HCS_ORDER == "ab" else _A.conj().T @ _B
 
 
 def two_mode_H(wa, wb, gam, g, E, D):                       # Eq. (9), hbar = 1
@@ -83,11 +85,16 @@ class Controller:                                             # Alg. 2
 
 def check_table_vi():
     c = Controller(18)
-    tab = {+1.0: (0.11501, .3461), +.5: (0.13925, .4190), 0.: (0.16618, .5), -.5: (0.19274, .5799), -1.: (0.21888, .6586)}
+    tab = {"ab": {+1.0: (0.11501, .3461), +.5: (0.13925, .4190), 0.: (0.16618, .5), -.5: (0.19274, .5799), -1.: (0.21888, .6586)},
+           "adagb": {+1.0: (0.12730, .3686), +.5: (0.14906, .4317), 0.: (0.17266, .5), -.5: (0.19713, .5708), -1.: (0.22198, .6428)}}[HCS_ORDER]
     for s, (G, e) in tab.items():
         eps, lam, w, info = c.step(s)
         assert abs(info["G1"] - G) < 1e-5 and abs(eps - e) < 1e-4, (s, info, eps)
-    print(f"Hamiltonian layer reproduces Table VI (Gamma, eps); step weights in [{c.base_w.min():.3f}, {c.base_w.max():.3f}], mean {c.base_w.mean():.3f}")
+    print(f"Hamiltonian layer (order {HCS_ORDER}) reproduces Table VI (Gamma, eps), eps max {EPS_MAX:.4f}; step weights in [{c.base_w.min():.3f}, {c.base_w.max():.3f}], mean {c.base_w.mean():.3f}")
+
+
+EPS_MAX = Controller(18).step(-1.0)[0]          # controller's largest budget (s = -1); fixed-budget comparison uses it
+FB_LABEL = "FB-AT (eps max)"
 
 
 # =============================================================================================
@@ -246,7 +253,8 @@ def degraded(e0, ea, tau):
 # =============================================================================================
 # 4. Game loop (Alg. 4) and fixed-budget comparison
 # =============================================================================================
-def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=(0.6586, 0.5), batch=16, tag="", verbose=True):
+def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, batch=16, tag="", verbose=True):
+    fixed = (EPS_MAX, 0.5) if fixed is None else fixed
     tf.keras.utils.set_random_seed(seed)
     m = cell13_model(D["window"], D["n_feats"]); m.set_weights(theta0.get_weights())
     pgd = make_pgd(m)
@@ -374,10 +382,10 @@ def run(D, tag, seeds, args):
     for sd in seeds:
         had, hlog, hbr = game(base, D, sd, rounds=args.rounds, controller=True, tag=f"{tag}/s{sd} HAD", verbose=args.verbose)
         fb, flog, fbr = game(base, D, sd, rounds=args.rounds, controller=False, tag=f"{tag}/s{sd} FB-AT", verbose=args.verbose)
-        models = {"Two-Head LSTM (undefended)": base, "FB-AT (eps 0.6586)": fb, "HAD-Stack": had}
+        models = {"Two-Head LSTM (undefended)": base, FB_LABEL: fb, "HAD-Stack": had}
         res, rows = evaluate(models, D, steps=args.eval_steps, restarts=args.eval_restarts)
         ci = bootstrap(rows["HAD-Stack"], rows["Two-Head LSTM (undefended)"], (0.5, 1.0))
-        out.append(dict(split=tag, seed=sd, had_best_round=hbr, fb_best_round=fbr, metrics=res, ci=ci, had_log=hlog, fb_log=flog))
+        out.append(dict(split=tag, seed=sd, order=HCS_ORDER, eps_max=EPS_MAX, had_best_round=hbr, fb_best_round=fbr, metrics=res, ci=ci, had_log=hlog, fb_log=flog))
         for k, v in res.items():
             print(f"{tag}/s{sd} {k:28s} MAE {v['MAE']:.3f} RMSE {v['RMSE']:.3f} DA {v['DA']:.1f} | robust@0.5 {v['robust@0.5']:.1f} "
                   f"robust@1.0 {v['robust@1.0']:.1f} | wcRMSE {v['wcRMSE@0.5']:.3f}/{v['wcRMSE@1.0']:.3f}", flush=True)

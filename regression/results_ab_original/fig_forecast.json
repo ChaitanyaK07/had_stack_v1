@@ -1,0 +1,11 @@
+{
+ "best_round": 29,
+ "Undefended": {
+  "clean_rmse": 8.163226127624512,
+  "adv_rmse": 13.131364822387695
+ },
+ "HAD-Stack": {
+  "clean_rmse": 6.290146827697754,
+  "adv_rmse": 11.98355484008789
+ }
+}

@@ -1,5 +1,10 @@
 
 import numpy as np
+import os as _os
+# Order parameter of the two-mode self-consistent iteration: "adagb" -> Delta_j = Re<a^dag b>, Re<a^dag c>
+# (the transition fields of the derivation, Eqs. 7-8); "ab" -> <ab>, <ac> (the original release). Set HCS_ORDER to choose.
+HCS_ORDER = _os.environ.get("HCS_ORDER", "adagb")
+assert HCS_ORDER in ("ab", "adagb"), HCS_ORDER
 import warnings
 
 # Use Agg backend to avoid GUI issues
@@ -85,6 +90,7 @@ class QuantumHamiltonianSolver:
         self.dim = 4
         self.a, self.a_dag, self.b, self.b_dag = self._create_operators()
         self.ab = self.a @ self.b
+        self.order_op = self.ab if HCS_ORDER == "ab" else self.a_dag @ self.b
         self.a_dag_b_dag = self.a_dag @ self.b_dag
 
     def _create_operators(self):
@@ -135,7 +141,7 @@ class QuantumHamiltonianSolver:
             eigenvalues, eigenvectors = np.linalg.eigh(H)
             psi_0 = eigenvectors[:, 0]
 
-            delta_computed = np.vdot(psi_0, self.ab @ psi_0).real
+            delta_computed = np.vdot(psi_0, self.order_op @ psi_0).real
             delta_new = mixing * delta_computed + (1 - mixing) * delta
             
             error = abs(delta_new - delta)
@@ -174,6 +180,7 @@ class H2Solver:
         self.dim = 4
         self.a, self.a_dag, self.c, self.c_dag = self._create_operators()
         self.ac = self.a @ self.c
+        self.order_op = self.ac if HCS_ORDER == "ab" else self.a_dag @ self.c
         self.a_dag_c_dag = self.a_dag @ self.c_dag
 
     def _create_operators(self):
@@ -230,7 +237,7 @@ class H2Solver:
             eigenvalues, eigenvectors = np.linalg.eigh(H)
             psi_0 = eigenvectors[:, 0]
 
-            delta_2_computed = np.vdot(psi_0, self.ac @ psi_0).real
+            delta_2_computed = np.vdot(psi_0, self.order_op @ psi_0).real
             delta_2_new = mixing * delta_2_computed + (1 - mixing) * delta_2
 
             error = abs(delta_2_new - delta_2)

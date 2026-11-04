@@ -12,7 +12,8 @@ for r in R:
     L = r["had_log"]; x = [l["round"] for l in L]
     sty = dict(lw=1.3, color=cols[r["seed"]], label=f"seed {r['seed']}") if r["split"] == "fixed" else dict(lw=.8, ls="--", color="grey", alpha=.75, label=None)
     ax[0].plot(x, [l["eps"] for l in L], **sty); ax[1].plot(x, [l["train"] for l in L], **sty); ax[2].plot(x, [l["strong"] for l in L], **sty)
-ax[0].axhline(0.6586, ls=":", c="k", lw=.8); ax[0].set_ylim(0.33, 0.70); ax[0].text(9, 0.668, "max. 0.6586", fontsize=6.5)
+EM = R[0].get("eps_max", 0.6586)
+ax[0].axhline(EM, ls=":", c="k", lw=.8); ax[0].set_ylim(0.33, 0.70); ax[0].text(9, EM + 0.0094, f"max. {EM:.4f}", fontsize=6.5)
 ax[0].set_ylabel(r"budget $\varepsilon$ ($=\lambda$)"); ax[1].set_ylabel("in-loop attack, training (%)"); ax[2].set_ylabel(r"PGD-50$\times$2, validation (%)")
 for a, t in zip(ax, ["(a)", "(b)", "(c)"]): a.set_xlabel("round"); a.set_title(t, loc="left")
 ax[1].plot([], [], ls="--", c="grey", lw=.8, label="folds 1–5")
@@ -22,7 +23,7 @@ fig.tight_layout(pad=0.3); fig.savefig(os.path.join(FIG, "f_bond_dynamics.pdf"))
 
 # Fig. 7: broken rate vs threshold (fixed split, seed 1)
 d = json.load(open(os.path.join(RES, "tau_sens.json"))); tau = d["tau"]; mult = np.linspace(0.25, 6, 47)
-names = [("Two-Head LSTM (undefended)", "Undefended", "C3"), ("HAD-Stack", "HAD-Stack", "C0"), ("FB-AT (eps 0.6586)", "Fixed-budget AT", "C7")]
+names = [("Two-Head LSTM (undefended)", "Undefended", "C3"), ("HAD-Stack", "HAD-Stack", "C0"), ("FB-AT (eps max)", "Fixed-budget AT", "C7")]
 fig, ax = plt.subplots(1, 2, figsize=(3.5, 2.15), sharey=True)
 for a, eps in zip(ax, ("0.5", "1.0")):
     for k, lab, c in names:

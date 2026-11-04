@@ -14,7 +14,7 @@ b=hs.HamiltonianBudgetV3(); t=time.perf_counter()
 for _ in range(20): b.resolve(-0.5)
 T["hamiltonian_resolve_ms"]=1000*(time.perf_counter()-t)/20
 # 3. one adversarial training epoch: HAD-Stack v3 and FB-AT (identical trainer, different budget object)
-for name,bud in [("v3",hs.HamiltonianBudgetV3()),("fbat",hs.FixedBudget(0.6586,0.6586))]:
+for name,bud in [("v3",hs.HamiltonianBudgetV3()),("fbat",hs.FixedBudget(hs.EPS_MAX,hs.EPS_MAX))]:
     m=fresh(); Tr=ag.StackelbergAdversarialTrainer(m,bud,adapt=(name=="v3"),epochs=30); Tr.adv_weight=bud.derived_lambda()
     t=time.perf_counter(); Tr.train_epoch(tr); T[f"{name}_train_epoch_s"]=time.perf_counter()-t
     sel=ag.HamiltonianAttacker(hs.FixedBudget(0.5,0.5)); t=time.perf_counter(); hs.robust_auc(m,va,sel,0.5); ag.robustness_gap_signal(m,Tr.attacker,va,None)

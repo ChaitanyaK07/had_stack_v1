@@ -7,7 +7,7 @@ os.makedirs(RES, exist_ok=True); os.makedirs(FIG, exist_ok=True)
 D = cell13_data(); base = cell13_train(D, 0)
 had, _, hbr = game(base, D, 1, verbose=False)
 fb, _, fbr = game(base, D, 1, controller=False, verbose=False)
-models = {"Two-Head LSTM (undefended)": base, "FB-AT (eps 0.6586)": fb, "HAD-Stack": had}
+models = {"Two-Head LSTM (undefended)": base, "FB-AT (eps max)": fb, "HAD-Stack": had}
 res, rows = evaluate(models, D)
 out = {"best": [hbr, fbr], "tau": D["sd_delta"], "metrics": res,
        "rows": {k: {kk: (v.tolist() if hasattr(v, "tolist") else v) for kk, v in r.items()} for k, r in rows.items()}}

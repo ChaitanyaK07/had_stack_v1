@@ -3,7 +3,7 @@ runs = []
 for f in sys.argv[1:]:
     try: runs += json.load(open(f))
     except Exception as e: print("skip", f, e)
-M = ["Two-Head LSTM (undefended)", "FB-AT (eps 0.6586)", "HAD-Stack"]
+M = ["Two-Head LSTM (undefended)", "FB-AT (eps max)", "HAD-Stack"]
 K = ["MAE", "RMSE", "DA", "robust@0.5", "robust@1.0", "broken@0.5", "broken@1.0", "wcRMSE@0.5", "wcRMSE@1.0", "robDA@0.5", "robDA@1.0"]
 for grp, sel in (("Fixed split, seeds", lambda r: r["split"] == "fixed"), ("Walk-forward folds", lambda r: r["split"] != "fixed")):
     R = [r for r in runs if sel(r)]

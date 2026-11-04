@@ -66,16 +66,16 @@ class FixedFloor:
     def get_feature_weights(self, n): return self._w
 
 class SignalLinear(FixedFloor):
-    """Same signal and same eps range as HAD-Stack (0.5 at s=0, 0.6586 at s=-1, 0.3461 at s=+1), linear in s."""
+    """Same signal and same eps range as HAD-Stack (0.5 at s=0, hs.EPS_MAX at s=-1, hs.EPS_MIN at s=+1), linear in s."""
     def __init__(self): super().__init__(0.5, 0.5)
     def resolve(self, signal=None):
         s = 0.0 if signal is None else float(np.clip(signal, -1, 1))
-        self.eps_global = 0.5 - (0.1586 if s <= 0 else 0.1539) * s; self._lam = self.eps_global; return self
+        self.eps_global = 0.5 - ((hs.EPS_MAX - 0.5) if s <= 0 else (0.5 - hs.EPS_MIN)) * s; self._lam = self.eps_global; return self
 
 class RampFloor(FixedFloor):
-    def __init__(self, epochs): super().__init__(0.3461, 0.3461); self.r, self.E = 0, epochs
+    def __init__(self, epochs): super().__init__(hs.EPS_MIN, hs.EPS_MIN); self.r, self.E = 0, epochs
     def resolve(self, signal=None):
-        self.eps_global = 0.3461 + (0.6586 - 0.3461) * self.r / max(self.E - 1, 1); self._lam = self.eps_global
+        self.eps_global = hs.EPS_MIN + (hs.EPS_MAX - hs.EPS_MIN) * self.r / max(self.E - 1, 1); self._lam = self.eps_global
         self.r += 1; return self
 
 class H2Only(hs.HamiltonianBudgetV3):
@@ -120,11 +120,11 @@ class TradesTrainer(ag.StackelbergAdversarialTrainer):
 
 
 def make_budget(m, epochs):
-    return {"fbat_floor": lambda: FixedFloor(0.6586, 0.6586), "signal_lin": SignalLinear,
+    return {"fbat_floor": lambda: FixedFloor(hs.EPS_MAX, hs.EPS_MAX), "signal_lin": SignalLinear,
             "ramp_floor": lambda: RampFloor(epochs), "grid_035": lambda: FixedFloor(0.35, 0.35),
-            "grid_050": lambda: FixedFloor(0.5, 0.5), "pgdat_uniform": lambda: ag.FixedPerturbationBudget(eps=0.6586, lam=0.5),
-            "trades_b1": lambda: ag.FixedPerturbationBudget(eps=0.6586, lam=0.5),
-            "trades_b6": lambda: ag.FixedPerturbationBudget(eps=0.6586, lam=0.5), "h2_only": H2Only,
+            "grid_050": lambda: FixedFloor(0.5, 0.5), "pgdat_uniform": lambda: ag.FixedPerturbationBudget(eps=hs.EPS_MAX, lam=0.5),
+            "trades_b1": lambda: ag.FixedPerturbationBudget(eps=hs.EPS_MAX, lam=0.5),
+            "trades_b6": lambda: ag.FixedPerturbationBudget(eps=hs.EPS_MAX, lam=0.5), "h2_only": H2Only,
             "h1_only": H1Only, "h29_only": H29Only}[m]()
 
 ADAPTIVE = ("signal_lin", "h2_only", "h1_only", "h29_only")

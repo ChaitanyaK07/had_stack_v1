@@ -62,9 +62,9 @@ class TorchSolver:
     def _expect(psi, O):                                                 # <psi|O|psi>, batched
         return torch.einsum("bi,ij,bj->b", psi.conj(), O, psi)
 
-    def solve_two_mode(self, which, g, treatment="complex", order="ab", delta0=0.1, mixing=0.3, tol=1e-8, nmax=200):
+    def solve_two_mode(self, which, g, treatment="complex", order=None, delta0=0.1, mixing=0.3, tol=1e-8, nmax=200):
         B0, Bg, BD, O_ab, O_dag = self.h1 if which == 1 else self.h2
-        O = O_ab if order == "ab" else O_dag
+        O = O_ab if (order or hv.HCS_ORDER) == "ab" else O_dag
         g = torch.as_tensor(g, dtype=torch.float64, device=self.dev)
         d = torch.full_like(g, delta0)
         for it in range(nmax):

@@ -1,0 +1,14 @@
+Thm 1: max |closed form - eig| = 1.2e-16; min Im w = 0.0025 (b = 0.0025); max weight outside one-excitation block = 0.0e+00
+Thm 2, s=+1.0: G([0,1]) = [0.2439, 0.4472], L = 0.4616, rho = (1-m)+mL = 0.8385; Delta* = 0.361328, G'(Delta*) = 0.2270, asymptotic factor 0.7681
+Thm 2, s=+0.5: G([0,1]) = [0.3635, 0.4562], L = 0.1228, rho = (1-m)+mL = 0.7368; Delta* = 0.411425, G'(Delta*) = 0.1061, asymptotic factor 0.7318
+Thm 2, s=+0.0: G([0,1]) = [0.4216, 0.4646], L = 0.0504, rho = (1-m)+mL = 0.7151; Delta* = 0.440581, G'(Delta*) = 0.0502, asymptotic factor 0.7151
+Thm 2, s=-0.5: G([0,1]) = [0.4497, 0.4715], L = 0.0258, rho = (1-m)+mL = 0.7077; Delta* = 0.458220, G'(Delta*) = 0.0252, asymptotic factor 0.7075
+Thm 2, s=-1.0: G([0,1]) = [0.4651, 0.4771], L = 0.0149, rho = (1-m)+mL = 0.7045; Delta* = 0.469363, G'(Delta*) = 0.0135, asymptotic factor 0.7041
+base coupling, Delta_0 = 0.1, tol 1e-8: 49 iterations, Delta = 0.44058145
+Cor 1: Gamma_base = 0.17266; eps strictly decreasing: True; range [0.3686, 0.6428]; max |deps/ds| = 0.1446 (at s = -1.00), min |deps/ds| = 0.1177
+      at s=0: dGamma/dg = 0.9555 (direct) + 0.0115 x 0.8915 (via Delta*) = 0.9658
+      s=+1.0: Delta* = 0.3613, E0 = -0.05844, Gamma = 0.12730, eps = lambda = 0.3686
+      s=+0.5: Delta* = 0.4114, E0 = -0.05854, Gamma = 0.14906, eps = lambda = 0.4317
+      s=+0.0: Delta* = 0.4406, E0 = -0.05791, Gamma = 0.17266, eps = lambda = 0.5000
+      s=-0.5: Delta* = 0.4582, E0 = -0.05714, Gamma = 0.19713, eps = lambda = 0.5708
+      s=-1.0: Delta* = 0.4694, E0 = -0.05640, Gamma = 0.22198, eps = lambda = 0.6428

@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 _src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "final_hamiltonian_solver.py")).read()
 _ns = {}; exec(_src.split("def main():")[0], _ns)          # user's exact operators + params
 PARAMS_H1, PARAMS_H2, PARAMS_EQ29 = _ns["PARAMS_H1"], _ns["PARAMS_H2"], _ns["PARAMS_EQ29"]
+HCS_ORDER = _ns["HCS_ORDER"]
 
 def _ground(H):
     ev, V = np.linalg.eig(H)
@@ -28,7 +29,7 @@ class H1v2(_ns["QuantumHamiltonianSolver"]):
         d = self.params["delta_init"]
         for it in range(max_iter):
             ev, psi = _ground(self.construct_hamiltonian(d))
-            dn = mixing * np.vdot(psi, self.ab @ psi).real + (1 - mixing) * d
+            dn = mixing * np.vdot(psi, self.order_op @ psi).real + (1 - mixing) * d
             if abs(dn - d) < tol: d = dn; break
             d = dn
         self.iters, self.order = it + 1, d
@@ -46,7 +47,7 @@ class H2v2(_ns["H2Solver"]):
         d = self.params["delta_2_init"]
         for it in range(max_iter):
             ev, psi = _ground(self.construct_hamiltonian(d))
-            dn = mixing * np.vdot(psi, self.ac @ psi).real + (1 - mixing) * d
+            dn = mixing * np.vdot(psi, self.order_op @ psi).real + (1 - mixing) * d
             if abs(dn - d) < tol: d = dn; break
             d = dn
         self.iters, self.order = it + 1, d

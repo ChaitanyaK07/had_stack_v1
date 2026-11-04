@@ -76,13 +76,20 @@ class HamiltonianBudgetV3(HamiltonianBudgetV2):
         return 0.5 + 0.5 * w / w.mean()
 
 
+# Controller range (v3 direction): eps at signal -1 (largest) and +1 (smallest). With HCS_ORDER=ab these are
+# 0.6586 and 0.3461 (the original release); every fixed-budget baseline is matched to EPS_MAX.
+_v3 = HamiltonianBudgetV3()
+EPS_MAX = round(float(_v3.resolve(-1.0).eps_global), 4); EPS_MIN = round(float(_v3.resolve(+1.0).eps_global), 4)
+del _v3
+
+
 class RampBudget(ag.FixedPerturbationBudget):
-    """Non-Hamiltonian curriculum control: eps rises linearly 0.3461 -> 0.6586 (v3's
+    """Non-Hamiltonian curriculum control: eps rises linearly EPS_MIN -> EPS_MAX (v3's
     range) over the rounds, lambda = 0.5, uniform weights."""
     def __init__(self, epochs):
-        super().__init__(eps=0.3461, lam=0.5); self.r, self.E = 0, epochs
+        super().__init__(eps=EPS_MIN, lam=0.5); self.r, self.E = 0, epochs
     def resolve(self, signal=None):
-        self.eps_global = 0.3461 + (0.6586 - 0.3461) * self.r / max(self.E - 1, 1)
+        self.eps_global = EPS_MIN + (EPS_MAX - EPS_MIN) * self.r / max(self.E - 1, 1)
         self.r += 1; return self
 
 
@@ -114,8 +121,8 @@ def train(method, epochs=30, patience=6, seed=42,
     tr, va, te, nf = bm.load_processed_data()
     budget = {"v2": lambda: HamiltonianBudgetV2(), "v3": lambda: HamiltonianBudgetV3(),
               "ramp": lambda: RampBudget(epochs),
-              "pgdat066": lambda: FixedBudget(0.6586, 0.5),
-              "pgdat066lam": lambda: FixedBudget(0.6586, 0.6586)}.get(method, lambda: FixedBudget(EPS_REF, 0.5))()
+              "pgdat066": lambda: FixedBudget(EPS_MAX, 0.5),
+              "pgdat066lam": lambda: FixedBudget(EPS_MAX, EPS_MAX)}.get(method, lambda: FixedBudget(EPS_REF, 0.5))()
     model = bm.TabularTransformer(nf, d_model=bm.HP['d_model'], n_heads=bm.HP['n_heads'],
                                   n_layers=bm.HP['n_layers'], d_ffn=bm.HP['d_ffn'],
                                   dropout=bm.HP['dropout'])

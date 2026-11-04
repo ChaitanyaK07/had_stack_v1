@@ -41,7 +41,7 @@ def ckpts(exp, unit):
 def xgb_models(Xtr, ytr, base, K):
     plain = ex.xgb_model(Xtr, ytr)
     Xf = torch.tensor(Xtr[ytr == 1])
-    adv = rc.pgd(base, Xf, 0.6586, "margin", K, 1).numpy()
+    adv = rc.pgd(base, Xf, rc.hs.EPS_MAX, "margin", K, 1).numpy()
     aug = ex.xgb_model(np.concatenate([Xtr, adv]), np.concatenate([ytr, np.ones(len(adv), np.int64)]))
     return {"xgb_plain": plain, "xgb_advaug": aug}
 

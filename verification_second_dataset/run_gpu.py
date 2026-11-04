@@ -112,7 +112,7 @@ def train_baseline(nf, tr, va, path):
 # ----------------------------------------------------------------------------------- HAD-Stack loop (Algorithm 4)
 def train_adv(method, seed, track, nf, tr, va, S, base_ckpt, out, rounds):
     bm.set_seed(seed)
-    budget, adapt = {"v3": (hs.HamiltonianBudgetV3(), True), "fbat05": (hs.FixedBudget(0.6586, 0.5), False)}[method]
+    budget, adapt = {"v3": (hs.HamiltonianBudgetV3(), True), "fbat05": (hs.FixedBudget(hs.EPS_MAX, 0.5), False)}[method]
     model = make_model(track, nf).to(bm.DEVICE); model.load_state_dict(torch.load(base_ckpt, map_location=bm.DEVICE))
     T = ag.StackelbergAdversarialTrainer(model, budget, adapt=adapt, epochs=rounds)
     sel = ag.HamiltonianAttacker(hs.FixedBudget(hs.SEL_EPS, 0.5))
