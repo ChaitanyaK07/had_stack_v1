@@ -69,3 +69,209 @@ fold1/s1 FB-AT r21 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 25.0 stale= 
 fold1/s1 FB-AT r22 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 25.0 stale= 25.0 strong= 29.7 zeta=153.002 valRMSE=0.454 rRMSE=4.979 (9s)
 fold1/s1 FB-AT r23 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 23.4 stale= 25.0 strong= 28.1 zeta=123.259 valRMSE=0.456 rRMSE=5.017 (7s)
 fold1/s1 FB-AT r24 s=+1.00 eps=0.6428 lam=0.5000 train=  0.2 fresh= 23.4 stale= 23.4 strong= 28.1 zeta=174.764 valRMSE=0.459 rRMSE=5.002 (6s)
+fold1/s1 Two-Head LSTM (undefended)   MAE 4.731 RMSE 6.687 DA 50.0 | robust@0.5 29.0 robust@1.0 24.4 | wcRMSE 10.937/12.034
+fold1/s1 FB-AT (eps max)              MAE 1.164 RMSE 1.639 DA 46.9 | robust@0.5 48.9 robust@1.0 35.9 | wcRMSE 9.034/10.807
+fold1/s1 HAD-Stack                    MAE 3.123 RMSE 4.813 DA 52.3 | robust@0.5 34.4 robust@1.0 26.7 | wcRMSE 10.615/11.847
+fold1/s1 HAD-Stack minus undefended: robust@0.5 +5.34 [+0.76,+12.98]; wcRMSE@0.5 -0.32 [-0.73,-0.07]; robust@1.0 +2.29 [-0.76,+6.87]; wcRMSE@1.0 -0.19 [-0.57,+0.00]
+
+=== fold2: rows 1318, split 790, fit 702 val 78 test 131 (2018-03-22..2018-10-01), features 38 (19 market), tau = 0.2967
+fold2/s1 HAD r00 theta0  eps=0.5000 train= 20.8 fresh= 47.4 strong= 47.4 valRMSE=0.930
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bd9975760> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bbf1c1e90>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold2/s1 HAD r01 s=+0.00 eps=0.5000 lam=0.5000 train= 17.0 fresh= 46.2 stale=  nan strong= 46.2 zeta=135.743 valRMSE=0.720 rRMSE=8.425 (13s)
+fold2/s1 HAD r02 s=+0.00 eps=0.5000 lam=0.5000 train=  8.8 fresh= 43.6 stale= 44.9 strong= 43.6 zeta=119.162 valRMSE=0.701 rRMSE=7.618 (8s)
+fold2/s1 HAD r03 s=-0.12 eps=0.5171 lam=0.5171 train=  6.3 fresh= 41.0 stale= 43.6 strong= 42.3 zeta=102.592 valRMSE=0.702 rRMSE=6.951 (8s)
+fold2/s1 HAD r04 s=-0.24 eps=0.5344 lam=0.5344 train=  4.3 fresh= 41.0 stale= 41.0 strong= 41.0 zeta=93.427 valRMSE=0.709 rRMSE=6.486 (8s)
+fold2/s1 HAD r05 s=-0.31 eps=0.5440 lam=0.5440 train=  2.7 fresh= 38.5 stale= 41.0 strong= 38.5 zeta=82.271 valRMSE=0.721 rRMSE=6.022 (8s)
+fold2/s1 HAD r06 s=-0.39 eps=0.5557 lam=0.5557 train=  2.0 fresh= 37.2 stale= 38.5 strong= 37.2 zeta=74.367 valRMSE=0.732 rRMSE=5.751 (8s)
+fold2/s1 HAD r07 s=-0.45 eps=0.5640 lam=0.5640 train=  1.3 fresh= 33.3 stale= 37.2 strong= 33.3 zeta=60.922 valRMSE=0.748 rRMSE=5.030 (8s)
+fold2/s1 HAD r08 s=-0.55 eps=0.5782 lam=0.5782 train=  1.4 fresh= 32.1 stale= 33.3 strong= 32.1 zeta=53.010 valRMSE=0.763 rRMSE=4.544 (7s)
+fold2/s1 HAD r09 s=-0.61 eps=0.5865 lam=0.5865 train=  0.6 fresh= 30.8 stale= 32.1 strong= 32.1 zeta=45.219 valRMSE=0.778 rRMSE=3.932 (8s)
+fold2/s1 HAD r10 s=-0.67 eps=0.5948 lam=0.5948 train=  0.4 fresh= 29.5 stale= 30.8 strong= 29.5 zeta=36.547 valRMSE=0.794 rRMSE=3.131 (7s)
+fold2/s1 HAD r11 s=-0.73 eps=0.6040 lam=0.6040 train=  0.4 fresh= 25.6 stale= 29.5 strong= 25.6 zeta=27.130 valRMSE=0.809 rRMSE=2.395 (7s)
+fold2/s1 HAD r12 s=-0.80 eps=0.6140 lam=0.6140 train=  0.4 fresh= 24.4 stale= 25.6 strong= 24.4 zeta=21.155 valRMSE=0.823 rRMSE=2.135 (7s)
+fold2/s1 HAD r13 s=-0.84 eps=0.6203 lam=0.6203 train=  0.7 fresh= 24.4 stale= 24.4 strong= 24.4 zeta=18.505 valRMSE=0.839 rRMSE=1.898 (7s)
+fold2/s1 HAD r14 s=-0.86 eps=0.6231 lam=0.6231 train=  0.6 fresh= 24.4 stale= 24.4 strong= 24.4 zeta=16.220 valRMSE=0.852 rRMSE=1.704 (7s)
+fold2/s1 HAD r15 s=-0.88 eps=0.6256 lam=0.6256 train=  0.1 fresh= 24.4 stale= 24.4 strong= 24.4 zeta=15.953 valRMSE=0.865 rRMSE=1.699 (7s)
+fold2/s1 HAD r16 s=-0.88 eps=0.6258 lam=0.6258 train=  0.1 fresh= 24.4 stale= 24.4 strong= 24.4 zeta=14.571 valRMSE=0.876 rRMSE=1.671 (8s)
+fold2/s1 HAD r17 s=-0.89 eps=0.6273 lam=0.6273 train=  0.1 fresh= 23.1 stale= 24.4 strong= 24.4 zeta=14.315 valRMSE=0.887 rRMSE=1.581 (7s)
+fold2/s1 HAD r18 s=-0.89 eps=0.6276 lam=0.6276 train=  0.1 fresh= 24.4 stale= 23.1 strong= 24.4 zeta=12.918 valRMSE=0.895 rRMSE=1.591 (8s)
+fold2/s1 HAD r19 s=-0.90 eps=0.6291 lam=0.6291 train=  0.1 fresh= 23.1 stale= 24.4 strong= 23.1 zeta=12.769 valRMSE=0.904 rRMSE=1.557 (7s)
+fold2/s1 HAD r20 s=-0.91 eps=0.6292 lam=0.6292 train=  0.1 fresh= 21.8 stale= 23.1 strong= 23.1 zeta=10.886 valRMSE=0.911 rRMSE=1.456 (7s)
+fold2/s1 HAD r21 s=-0.92 eps=0.6312 lam=0.6312 train=  0.4 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=11.089 valRMSE=0.917 rRMSE=1.454 (7s)
+fold2/s1 HAD r22 s=-0.92 eps=0.6310 lam=0.6310 train=  0.3 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.736 valRMSE=0.922 rRMSE=1.407 (7s)
+fold2/s1 HAD r23 s=-0.93 eps=0.6325 lam=0.6325 train=  0.3 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.765 valRMSE=0.926 rRMSE=1.366 (8s)
+fold2/s1 HAD r24 s=-0.93 eps=0.6324 lam=0.6324 train=  0.0 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.982 valRMSE=0.929 rRMSE=1.404 (8s)
+fold2/s1 HAD r25 s=-0.93 eps=0.6322 lam=0.6322 train=  0.1 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=10.194 valRMSE=0.931 rRMSE=1.413 (7s)
+fold2/s1 HAD r26 s=-0.92 eps=0.6320 lam=0.6320 train=  0.1 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.723 valRMSE=0.933 rRMSE=1.431 (7s)
+fold2/s1 HAD r27 s=-0.93 eps=0.6325 lam=0.6325 train=  0.1 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=10.038 valRMSE=0.934 rRMSE=1.331 (7s)
+fold2/s1 HAD r28 s=-0.93 eps=0.6321 lam=0.6321 train=  0.0 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.812 valRMSE=0.935 rRMSE=1.367 (7s)
+fold2/s1 HAD r29 s=-0.93 eps=0.6324 lam=0.6324 train=  0.0 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.245 valRMSE=0.935 rRMSE=1.347 (7s)
+fold2/s1 HAD r30 s=-0.93 eps=0.6330 lam=0.6330 train=  0.1 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=9.395 valRMSE=0.935 rRMSE=1.346 (7s)
+fold2/s1 FB-AT r00 theta0  eps=0.6428 train= 42.7 fresh= 47.4 strong= 47.4 valRMSE=0.930
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bbe684400> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bbe871e90>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold2/s1 FB-AT r01 s=+0.00 eps=0.6428 lam=0.5000 train= 37.3 fresh= 46.2 stale=  nan strong= 46.2 zeta=159.291 valRMSE=0.707 rRMSE=8.383 (13s)
+fold2/s1 FB-AT r02 s=+0.00 eps=0.6428 lam=0.5000 train= 27.6 fresh= 43.6 stale= 46.2 strong= 44.9 zeta=146.014 valRMSE=0.690 rRMSE=7.442 (8s)
+fold2/s1 FB-AT r03 s=-0.08 eps=0.6428 lam=0.5000 train= 18.2 fresh= 42.3 stale= 43.6 strong= 42.3 zeta=123.157 valRMSE=0.696 rRMSE=5.927 (8s)
+fold2/s1 FB-AT r04 s=-0.23 eps=0.6428 lam=0.5000 train= 10.5 fresh= 41.0 stale= 41.0 strong= 41.0 zeta=102.201 valRMSE=0.706 rRMSE=4.482 (7s)
+fold2/s1 FB-AT r05 s=-0.36 eps=0.6428 lam=0.5000 train=  6.0 fresh= 38.5 stale= 41.0 strong= 38.5 zeta=76.459 valRMSE=0.720 rRMSE=3.228 (8s)
+fold2/s1 FB-AT r06 s=-0.52 eps=0.6428 lam=0.5000 train=  3.8 fresh= 37.2 stale= 38.5 strong= 37.2 zeta=57.492 valRMSE=0.732 rRMSE=2.711 (8s)
+fold2/s1 FB-AT r07 s=-0.64 eps=0.6428 lam=0.5000 train=  2.3 fresh= 33.3 stale= 37.2 strong= 33.3 zeta=37.234 valRMSE=0.748 rRMSE=2.071 (8s)
+fold2/s1 FB-AT r08 s=-0.77 eps=0.6428 lam=0.5000 train=  1.4 fresh= 30.8 stale= 33.3 strong= 30.8 zeta=23.890 valRMSE=0.764 rRMSE=1.579 (7s)
+fold2/s1 FB-AT r09 s=-0.85 eps=0.6428 lam=0.5000 train=  0.4 fresh= 29.5 stale= 30.8 strong= 29.5 zeta=17.298 valRMSE=0.778 rRMSE=1.282 (7s)
+fold2/s1 FB-AT r10 s=-0.89 eps=0.6428 lam=0.5000 train=  0.3 fresh= 28.2 stale= 29.5 strong= 28.2 zeta=11.113 valRMSE=0.794 rRMSE=1.083 (8s)
+fold2/s1 FB-AT r11 s=-0.93 eps=0.6428 lam=0.5000 train=  0.1 fresh= 24.4 stale= 28.2 strong= 24.4 zeta=6.503 valRMSE=0.810 rRMSE=0.980 (8s)
+fold2/s1 FB-AT r12 s=-0.96 eps=0.6428 lam=0.5000 train=  0.3 fresh= 24.4 stale= 24.4 strong= 24.4 zeta=5.239 valRMSE=0.824 rRMSE=0.994 (7s)
+fold2/s1 FB-AT r13 s=-0.97 eps=0.6428 lam=0.5000 train=  0.3 fresh= 24.4 stale= 23.1 strong= 24.4 zeta=4.214 valRMSE=0.839 rRMSE=0.983 (8s)
+fold2/s1 FB-AT r14 s=-0.97 eps=0.6428 lam=0.5000 train=  0.1 fresh= 23.1 stale= 23.1 strong= 24.4 zeta=4.088 valRMSE=0.853 rRMSE=0.969 (8s)
+fold2/s1 FB-AT r15 s=-0.97 eps=0.6428 lam=0.5000 train=  0.1 fresh= 24.4 stale= 23.1 strong= 24.4 zeta=3.884 valRMSE=0.865 rRMSE=0.984 (8s)
+fold2/s1 FB-AT r16 s=-0.98 eps=0.6428 lam=0.5000 train=  0.0 fresh= 23.1 stale= 24.4 strong= 24.4 zeta=3.349 valRMSE=0.876 rRMSE=0.989 (7s)
+fold2/s1 FB-AT r17 s=-0.98 eps=0.6428 lam=0.5000 train=  0.0 fresh= 23.1 stale= 23.1 strong= 24.4 zeta=3.711 valRMSE=0.887 rRMSE=0.995 (8s)
+fold2/s1 FB-AT r18 s=-0.98 eps=0.6428 lam=0.5000 train=  0.0 fresh= 23.1 stale= 23.1 strong= 24.4 zeta=3.474 valRMSE=0.896 rRMSE=1.005 (7s)
+fold2/s1 FB-AT r19 s=-0.98 eps=0.6428 lam=0.5000 train=  0.0 fresh= 23.1 stale= 23.1 strong= 23.1 zeta=3.348 valRMSE=0.905 rRMSE=0.998 (8s)
+fold2/s1 FB-AT r20 s=-0.98 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.5 stale= 23.1 strong= 21.8 zeta=1.736 valRMSE=0.912 rRMSE=0.962 (8s)
+fold2/s1 FB-AT r21 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 21.8 stale= 20.5 strong= 21.8 zeta=1.745 valRMSE=0.918 rRMSE=0.966 (8s)
+fold2/s1 FB-AT r22 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 21.8 stale= 21.8 strong= 21.8 zeta=1.666 valRMSE=0.923 rRMSE=0.969 (8s)
+fold2/s1 FB-AT r23 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.5 stale= 20.5 strong= 21.8 zeta=1.641 valRMSE=0.927 rRMSE=0.971 (8s)
+fold2/s1 FB-AT r24 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.5 stale= 20.5 strong= 21.8 zeta=1.624 valRMSE=0.930 rRMSE=0.976 (7s)
+fold2/s1 FB-AT r25 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 21.8 stale= 20.5 strong= 21.8 zeta=1.589 valRMSE=0.932 rRMSE=0.979 (7s)
+fold2/s1 FB-AT r26 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.5 stale= 21.8 strong= 21.8 zeta=1.668 valRMSE=0.934 rRMSE=0.979 (7s)
+fold2/s1 Two-Head LSTM (undefended)   MAE 0.464 RMSE 0.703 DA 52.7 | robust@0.5 35.1 robust@1.0 23.7 | wcRMSE 8.734/11.840
+fold2/s1 FB-AT (eps max)              MAE 0.553 RMSE 0.692 DA 56.6 | robust@0.5 96.9 robust@1.0 64.1 | wcRMSE 1.503/6.136
+fold2/s1 HAD-Stack                    MAE 0.577 RMSE 0.716 DA 56.6 | robust@0.5 92.4 robust@1.0 55.7 | wcRMSE 2.166/7.602
+fold2/s1 HAD-Stack minus undefended: robust@0.5 +57.25 [+42.73,+73.30]; wcRMSE@0.5 -6.57 [-9.39,-4.38]; robust@1.0 +32.06 [+20.61,+42.00]; wcRMSE@1.0 -4.24 [-5.15,-3.21]
+
+=== fold3: rows 1318, split 922, fit 821 val 91 test 131 (2018-10-03..2019-04-11), features 38 (19 market), tau = 0.2824
+fold3/s1 HAD r00 theta0  eps=0.5000 train= 13.3 fresh= 46.2 strong= 49.5 valRMSE=0.357
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bbcd3f100> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bbd0f9a90>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold3/s1 HAD r01 s=+0.00 eps=0.5000 lam=0.5000 train= 10.0 fresh= 41.8 stale=  nan strong= 42.9 zeta=352.341 valRMSE=0.349 rRMSE=6.607 (14s)
+fold3/s1 HAD r02 s=+0.00 eps=0.5000 lam=0.5000 train=  3.5 fresh= 39.6 stale= 39.6 strong= 38.5 zeta=194.192 valRMSE=0.356 rRMSE=4.774 (9s)
+fold3/s1 HAD r03 s=-0.45 eps=0.5635 lam=0.5635 train=  4.6 fresh= 37.4 stale= 34.1 strong= 37.4 zeta=151.658 valRMSE=0.367 rRMSE=3.205 (9s)
+fold3/s1 HAD r04 s=-0.57 eps=0.5808 lam=0.5808 train=  2.1 fresh= 34.1 stale= 34.1 strong= 36.3 zeta=85.686 valRMSE=0.382 rRMSE=1.984 (9s)
+fold3/s1 HAD r05 s=-0.76 eps=0.6077 lam=0.6077 train=  1.8 fresh= 30.8 stale= 29.7 strong= 33.0 zeta=54.121 valRMSE=0.399 rRMSE=1.104 (8s)
+fold3/s1 HAD r06 s=-0.85 eps=0.6206 lam=0.6206 train=  1.1 fresh= 23.1 stale= 23.1 strong= 28.6 zeta=32.879 valRMSE=0.419 rRMSE=0.665 (8s)
+fold3/s1 HAD r07 s=-0.91 eps=0.6293 lam=0.6293 train=  0.4 fresh= 17.6 stale= 19.8 strong= 22.0 zeta=19.725 valRMSE=0.441 rRMSE=0.584 (9s)
+fold3/s1 HAD r08 s=-0.94 eps=0.6347 lam=0.6347 train=  0.5 fresh= 19.8 stale= 17.6 strong= 20.9 zeta=14.101 valRMSE=0.459 rRMSE=0.491 (9s)
+fold3/s1 HAD r09 s=-0.96 eps=0.6370 lam=0.6370 train=  0.6 fresh= 15.4 stale= 18.7 strong= 17.6 zeta=13.883 valRMSE=0.480 rRMSE=0.499 (8s)
+fold3/s1 HAD r10 s=-0.96 eps=0.6371 lam=0.6371 train=  0.2 fresh= 14.3 stale= 14.3 strong= 16.5 zeta=11.081 valRMSE=0.497 rRMSE=0.513 (8s)
+fold3/s1 HAD r11 s=-0.97 eps=0.6383 lam=0.6383 train=  0.0 fresh= 13.2 stale= 14.3 strong= 15.4 zeta=7.255 valRMSE=0.515 rRMSE=0.529 (9s)
+fold3/s1 HAD r12 s=-0.98 eps=0.6398 lam=0.6398 train=  0.1 fresh= 14.3 stale= 13.2 strong= 14.3 zeta=6.739 valRMSE=0.532 rRMSE=0.537 (8s)
+fold3/s1 HAD r13 s=-0.98 eps=0.6401 lam=0.6401 train=  0.0 fresh= 11.0 stale= 14.3 strong= 13.2 zeta=3.761 valRMSE=0.548 rRMSE=0.551 (8s)
+fold3/s1 HAD r14 s=-0.99 eps=0.6413 lam=0.6413 train=  0.0 fresh=  8.8 stale= 11.0 strong=  8.8 zeta=2.340 valRMSE=0.562 rRMSE=0.563 (8s)
+fold3/s1 FB-AT r00 theta0  eps=0.6428 train= 36.7 fresh= 52.7 strong= 56.0 valRMSE=0.357
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bbd7b2200> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bdaa10a50>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold3/s1 FB-AT r01 s=+0.00 eps=0.6428 lam=0.5000 train= 30.8 fresh= 45.1 stale=  nan strong= 46.2 zeta=528.325 valRMSE=0.349 rRMSE=5.190 (14s)
+fold3/s1 FB-AT r02 s=+0.00 eps=0.6428 lam=0.5000 train= 19.0 fresh= 39.6 stale= 42.9 strong= 39.6 zeta=319.407 valRMSE=0.357 rRMSE=2.578 (9s)
+fold3/s1 FB-AT r03 s=-0.40 eps=0.6428 lam=0.5000 train=  9.1 fresh= 37.4 stale= 38.5 strong= 37.4 zeta=154.092 valRMSE=0.368 rRMSE=1.270 (9s)
+fold3/s1 FB-AT r04 s=-0.71 eps=0.6428 lam=0.5000 train=  3.3 fresh= 35.2 stale= 37.4 strong= 36.3 zeta=72.443 valRMSE=0.383 rRMSE=0.664 (9s)
+fold3/s1 FB-AT r05 s=-0.86 eps=0.6428 lam=0.5000 train=  1.8 fresh= 31.9 stale= 34.1 strong= 33.0 zeta=29.021 valRMSE=0.401 rRMSE=0.455 (9s)
+fold3/s1 FB-AT r06 s=-0.95 eps=0.6428 lam=0.5000 train=  1.1 fresh= 20.9 stale= 25.3 strong= 23.1 zeta=15.276 valRMSE=0.420 rRMSE=0.438 (8s)
+fold3/s1 FB-AT r07 s=-0.97 eps=0.6428 lam=0.5000 train=  0.2 fresh= 16.5 stale= 18.7 strong= 18.7 zeta=8.084 valRMSE=0.442 rRMSE=0.451 (9s)
+fold3/s1 FB-AT r08 s=-0.98 eps=0.6428 lam=0.5000 train=  0.2 fresh= 13.2 stale= 15.4 strong= 15.4 zeta=5.033 valRMSE=0.461 rRMSE=0.465 (9s)
+fold3/s1 FB-AT r09 s=-0.99 eps=0.6428 lam=0.5000 train=  0.1 fresh= 13.2 stale= 12.1 strong= 15.4 zeta=2.628 valRMSE=0.483 rRMSE=0.486 (9s)
+fold3/s1 FB-AT r10 s=-1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 12.1 stale= 12.1 strong= 12.1 zeta=2.675 valRMSE=0.500 rRMSE=0.502 (9s)
+fold3/s1 FB-AT r11 s=-0.99 eps=0.6428 lam=0.5000 train=  0.0 fresh=  7.7 stale= 11.0 strong= 11.0 zeta=2.322 valRMSE=0.518 rRMSE=0.520 (10s)
+fold3/s1 FB-AT r12 s=-1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh=  9.9 stale=  7.7 strong=  9.9 zeta=0.628 valRMSE=0.535 rRMSE=0.536 (9s)
+fold3/s1 Two-Head LSTM (undefended)   MAE 2.316 RMSE 4.664 DA 54.7 | robust@0.5 32.1 robust@1.0 22.1 | wcRMSE 9.699/12.278
+fold3/s1 FB-AT (eps max)              MAE 0.604 RMSE 0.836 DA 57.8 | robust@0.5 63.4 robust@1.0 32.8 | wcRMSE 5.722/10.018
+fold3/s1 HAD-Stack                    MAE 0.900 RMSE 1.704 DA 58.6 | robust@0.5 58.0 robust@1.0 30.5 | wcRMSE 6.508/10.573
+fold3/s1 HAD-Stack minus undefended: robust@0.5 +25.95 [+13.74,+43.51]; wcRMSE@0.5 -3.19 [-5.00,-1.60]; robust@1.0 +8.40 [+3.05,+15.27]; wcRMSE@1.0 -1.70 [-2.70,-0.96]
+
+=== fold4: rows 1318, split 1054, fit 940 val 104 test 131 (2019-04-15..2019-10-18), features 38 (19 market), tau = 0.2804
+fold4/s1 HAD r00 theta0  eps=0.5000 train=  7.1 fresh= 43.3 strong= 45.2 valRMSE=4.200
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bb78e2ac0> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bbc2a8b50>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold4/s1 HAD r01 s=+0.00 eps=0.5000 lam=0.5000 train=  5.1 fresh= 39.4 stale=  nan strong= 42.3 zeta=3.516 valRMSE=3.864 rRMSE=8.219 (16s)
+fold4/s1 HAD r02 s=+0.00 eps=0.5000 lam=0.5000 train=  2.4 fresh= 36.5 stale= 38.5 strong= 39.4 zeta=3.749 valRMSE=3.675 rRMSE=8.118 (11s)
+fold4/s1 HAD r03 s=+0.07 eps=0.4908 lam=0.4908 train=  0.7 fresh= 36.5 stale= 36.5 strong= 36.5 zeta=4.065 valRMSE=3.511 rRMSE=8.039 (10s)
+fold4/s1 HAD r04 s=+0.16 eps=0.4783 lam=0.4783 train=  0.3 fresh= 34.6 stale= 36.5 strong= 34.6 zeta=3.868 valRMSE=3.450 rRMSE=7.581 (10s)
+fold4/s1 HAD r05 s=+0.10 eps=0.4860 lam=0.4860 train=  0.2 fresh= 31.7 stale= 34.6 strong= 32.7 zeta=4.121 valRMSE=3.245 rRMSE=7.376 (10s)
+fold4/s1 HAD r06 s=+0.17 eps=0.4761 lam=0.4761 train=  0.1 fresh= 29.8 stale= 31.7 strong= 30.8 zeta=4.004 valRMSE=3.200 rRMSE=7.335 (10s)
+fold4/s1 HAD r07 s=+0.14 eps=0.4807 lam=0.4807 train=  0.0 fresh= 30.8 stale= 29.8 strong= 30.8 zeta=4.033 valRMSE=3.246 rRMSE=7.202 (10s)
+fold4/s1 HAD r08 s=+0.15 eps=0.4795 lam=0.4795 train=  0.1 fresh= 28.8 stale= 30.8 strong= 29.8 zeta=3.911 valRMSE=3.173 rRMSE=7.200 (10s)
+fold4/s1 HAD r09 s=+0.11 eps=0.4843 lam=0.4843 train=  0.0 fresh= 28.8 stale= 28.8 strong= 30.8 zeta=4.139 valRMSE=3.115 rRMSE=6.995 (9s)
+fold4/s1 HAD r10 s=+0.18 eps=0.4754 lam=0.4754 train=  0.0 fresh= 26.9 stale= 28.8 strong= 28.8 zeta=3.778 valRMSE=3.110 rRMSE=6.863 (9s)
+fold4/s1 HAD r11 s=+0.07 eps=0.4896 lam=0.4896 train=  0.0 fresh= 26.9 stale= 26.9 strong= 26.9 zeta=3.971 valRMSE=3.059 rRMSE=6.847 (10s)
+fold4/s1 HAD r12 s=+0.13 eps=0.4820 lam=0.4820 train=  0.0 fresh= 25.0 stale= 26.9 strong= 26.9 zeta=3.650 valRMSE=3.062 rRMSE=6.874 (9s)
+fold4/s1 HAD r13 s=+0.04 eps=0.4947 lam=0.4947 train=  0.0 fresh= 24.0 stale= 25.0 strong= 25.0 zeta=3.370 valRMSE=3.098 rRMSE=6.622 (11s)
+fold4/s1 HAD r14 s=-0.04 eps=0.5058 lam=0.5058 train=  0.0 fresh= 24.0 stale= 24.0 strong= 26.0 zeta=3.795 valRMSE=2.955 rRMSE=6.605 (9s)
+fold4/s1 HAD r15 s=+0.08 eps=0.4889 lam=0.4889 train=  0.0 fresh= 23.1 stale= 24.0 strong= 25.0 zeta=3.645 valRMSE=2.926 rRMSE=6.479 (10s)
+fold4/s1 HAD r16 s=+0.04 eps=0.4948 lam=0.4948 train=  0.0 fresh= 23.1 stale= 23.1 strong= 25.0 zeta=3.681 valRMSE=2.926 rRMSE=6.608 (10s)
+fold4/s1 HAD r17 s=+0.05 eps=0.4934 lam=0.4934 train=  0.0 fresh= 24.0 stale= 23.1 strong= 25.0 zeta=3.894 valRMSE=2.928 rRMSE=6.478 (10s)
+fold4/s1 HAD r18 s=+0.11 eps=0.4850 lam=0.4850 train=  0.0 fresh= 23.1 stale= 24.0 strong= 24.0 zeta=3.635 valRMSE=2.939 rRMSE=6.364 (10s)
+fold4/s1 HAD r19 s=+0.03 eps=0.4953 lam=0.4953 train=  0.0 fresh= 23.1 stale= 23.1 strong= 23.1 zeta=3.638 valRMSE=2.945 rRMSE=6.370 (10s)
+fold4/s1 HAD r20 s=+0.03 eps=0.4952 lam=0.4952 train=  0.0 fresh= 24.0 stale= 23.1 strong= 24.0 zeta=3.865 valRMSE=2.945 rRMSE=6.241 (10s)
+fold4/s1 HAD r21 s=+0.10 eps=0.4862 lam=0.4862 train=  0.0 fresh= 21.2 stale= 24.0 strong= 23.1 zeta=3.314 valRMSE=2.933 rRMSE=6.379 (11s)
+fold4/s1 HAD r22 s=-0.06 eps=0.5080 lam=0.5080 train=  0.0 fresh= 22.1 stale= 21.2 strong= 24.0 zeta=3.524 valRMSE=2.949 rRMSE=6.267 (10s)
+fold4/s1 HAD r23 s=+0.00 eps=0.4997 lam=0.4997 train=  0.0 fresh= 19.2 stale= 22.1 strong= 23.1 zeta=3.000 valRMSE=2.936 rRMSE=6.139 (10s)
+fold4/s1 HAD r24 s=-0.15 eps=0.5206 lam=0.5206 train=  0.0 fresh= 22.1 stale= 19.2 strong= 25.0 zeta=3.516 valRMSE=2.967 rRMSE=6.009 (9s)
+fold4/s1 HAD r25 s=+0.00 eps=0.5000 lam=0.5000 train=  0.0 fresh= 22.1 stale= 22.1 strong= 23.1 zeta=3.472 valRMSE=2.971 rRMSE=6.144 (10s)
+fold4/s1 HAD r26 s=-0.01 eps=0.5017 lam=0.5017 train=  0.0 fresh= 21.2 stale= 22.1 strong= 23.1 zeta=3.292 valRMSE=2.962 rRMSE=6.144 (11s)
+fold4/s1 HAD r27 s=-0.06 eps=0.5089 lam=0.5089 train=  0.0 fresh= 19.2 stale= 21.2 strong= 22.1 zeta=2.898 valRMSE=2.971 rRMSE=6.021 (10s)
+fold4/s1 HAD r28 s=-0.18 eps=0.5247 lam=0.5247 train=  0.0 fresh= 19.2 stale= 19.2 strong= 23.1 zeta=2.899 valRMSE=2.988 rRMSE=6.126 (10s)
+fold4/s1 HAD r29 s=-0.18 eps=0.5247 lam=0.5247 train=  0.0 fresh= 21.2 stale= 19.2 strong= 24.0 zeta=3.268 valRMSE=2.990 rRMSE=5.999 (11s)
+fold4/s1 HAD r30 s=-0.07 eps=0.5099 lam=0.5099 train=  0.0 fresh= 20.2 stale= 21.2 strong= 24.0 zeta=3.053 valRMSE=2.989 rRMSE=6.288 (10s)
+fold4/s1 FB-AT r00 theta0  eps=0.6428 train= 27.1 fresh= 46.2 strong= 47.1 valRMSE=4.200
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bbd5ae480> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bbc2b1a90>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold4/s1 FB-AT r01 s=+0.00 eps=0.6428 lam=0.5000 train= 20.5 fresh= 43.3 stale=  nan strong= 45.2 zeta=5.641 valRMSE=3.180 rRMSE=8.038 (16s)
+fold4/s1 FB-AT r02 s=+0.00 eps=0.6428 lam=0.5000 train=  8.5 fresh= 39.4 stale= 40.4 strong= 40.4 zeta=14.645 valRMSE=2.025 rRMSE=7.320 (10s)
+fold4/s1 FB-AT r03 s=+1.00 eps=0.6428 lam=0.5000 train=  2.7 fresh= 35.6 stale= 36.5 strong= 35.6 zeta=41.581 valRMSE=1.178 rRMSE=6.652 (10s)
+fold4/s1 FB-AT r04 s=+1.00 eps=0.6428 lam=0.5000 train=  1.4 fresh= 33.7 stale= 35.6 strong= 34.6 zeta=64.606 valRMSE=0.899 rRMSE=6.134 (9s)
+fold4/s1 FB-AT r05 s=+1.00 eps=0.6428 lam=0.5000 train=  0.6 fresh= 27.9 stale= 33.7 strong= 28.8 zeta=69.360 valRMSE=0.783 rRMSE=5.537 (9s)
+fold4/s1 FB-AT r06 s=+1.00 eps=0.6428 lam=0.5000 train=  0.3 fresh= 26.0 stale= 27.9 strong= 27.9 zeta=66.349 valRMSE=0.761 rRMSE=5.130 (9s)
+fold4/s1 FB-AT r07 s=+1.00 eps=0.6428 lam=0.5000 train=  0.2 fresh= 25.0 stale= 26.0 strong= 26.0 zeta=60.329 valRMSE=0.777 rRMSE=5.148 (9s)
+fold4/s1 FB-AT r08 s=+1.00 eps=0.6428 lam=0.5000 train=  0.2 fresh= 25.0 stale= 25.0 strong= 25.0 zeta=57.897 valRMSE=0.776 rRMSE=4.451 (10s)
+fold4/s1 FB-AT r09 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.2 stale= 25.0 strong= 21.2 zeta=46.272 valRMSE=0.777 rRMSE=4.216 (11s)
+fold4/s1 FB-AT r10 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 20.2 stale= 20.2 strong= 20.2 zeta=43.635 valRMSE=0.790 rRMSE=4.405 (9s)
+fold4/s1 FB-AT r11 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 18.3 stale= 21.2 strong= 17.3 zeta=35.420 valRMSE=0.801 rRMSE=4.225 (9s)
+fold4/s1 FB-AT r12 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 19.2 stale= 18.3 strong= 19.2 zeta=37.723 valRMSE=0.812 rRMSE=4.025 (10s)
+fold4/s1 FB-AT r13 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 15.4 stale= 19.2 strong= 18.3 zeta=26.066 valRMSE=0.820 rRMSE=3.834 (9s)
+fold4/s1 FB-AT r14 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 16.3 stale= 15.4 strong= 16.3 zeta=28.582 valRMSE=0.821 rRMSE=3.828 (10s)
+fold4/s1 FB-AT r15 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 14.4 stale= 15.4 strong= 16.3 zeta=25.135 valRMSE=0.826 rRMSE=3.819 (10s)
+fold4/s1 FB-AT r16 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 15.4 stale= 14.4 strong= 16.3 zeta=29.240 valRMSE=0.829 rRMSE=3.342 (10s)
+fold4/s1 FB-AT r17 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 16.3 stale= 15.4 strong= 17.3 zeta=31.617 valRMSE=0.834 rRMSE=3.782 (10s)
+fold4/s1 FB-AT r18 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 16.3 stale= 16.3 strong= 16.3 zeta=31.099 valRMSE=0.840 rRMSE=3.595 (9s)
+fold4/s1 FB-AT r19 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 11.5 stale= 16.3 strong= 15.4 zeta=19.217 valRMSE=0.845 rRMSE=3.808 (10s)
+fold4/s1 FB-AT r20 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 12.5 stale= 11.5 strong= 11.5 zeta=24.805 valRMSE=0.848 rRMSE=3.571 (9s)
+fold4/s1 FB-AT r21 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 10.6 stale= 12.5 strong= 13.5 zeta=20.011 valRMSE=0.850 rRMSE=3.783 (9s)
+fold4/s1 FB-AT r22 s=+1.00 eps=0.6428 lam=0.5000 train=  0.0 fresh= 11.5 stale= 10.6 strong= 11.5 zeta=21.974 valRMSE=0.852 rRMSE=3.585 (9s)
+fold4/s1 Two-Head LSTM (undefended)   MAE 2.640 RMSE 4.330 DA 40.3 | robust@0.5 0.0 robust@1.0 0.0 | wcRMSE 13.156/14.545
+fold4/s1 FB-AT (eps max)              MAE 0.587 RMSE 0.683 DA 41.1 | robust@0.5 22.1 robust@1.0 6.9 | wcRMSE 5.875/12.194
+fold4/s1 HAD-Stack                    MAE 0.824 RMSE 1.504 DA 42.6 | robust@0.5 6.9 robust@1.0 3.8 | wcRMSE 11.229/13.924
+fold4/s1 HAD-Stack minus undefended: robust@0.5 +6.87 [+0.76,+12.21]; wcRMSE@0.5 -1.93 [-2.77,-1.20]; robust@1.0 +3.82 [+0.00,+6.87]; wcRMSE@1.0 -0.62 [-0.92,-0.26]
+
+=== fold5: rows 1318, split 1186, fit 1059 val 117 test 122 (2019-10-22..2020-04-16), features 38 (19 market), tau = 0.2741
+fold5/s1 HAD r00 theta0  eps=0.5000 train=  2.5 fresh= 94.9 strong= 94.9 valRMSE=2.309
+WARNING:tensorflow:AutoGraph could not transform <function game.<locals>.train_step at 0x7f6bb448eac0> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: Unknown node type <gast.gast.Assign object at 0x7f6bb4b01e90>
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+fold5/s1 HAD r01 s=+0.00 eps=0.5000 lam=0.5000 train=  1.1 fresh= 86.3 stale=  nan strong= 91.5 zeta=33.843 valRMSE=1.208 rRMSE=7.149 (16s)
+fold5/s1 HAD r02 s=+0.00 eps=0.5000 lam=0.5000 train=  0.3 fresh= 81.2 stale= 81.2 strong= 86.3 zeta=68.960 valRMSE=0.811 rRMSE=6.751 (11s)
+fold5/s1 HAD r03 s=+1.00 eps=0.3686 lam=0.3686 train=  0.0 fresh= 53.8 stale= 81.2 strong= 59.0 zeta=46.329 valRMSE=0.774 rRMSE=6.703 (11s)
+fold5/s1 HAD r04 s=+0.37 eps=0.4492 lam=0.4492 train=  0.0 fresh= 75.2 stale= 53.8 strong= 78.6 zeta=67.633 valRMSE=0.757 rRMSE=6.733 (11s)
+fold5/s1 HAD r05 s=+1.00 eps=0.3688 lam=0.3688 train=  0.0 fresh= 53.8 stale= 75.2 strong= 58.1 zeta=50.288 valRMSE=0.749 rRMSE=6.744 (11s)
+fold5/s1 HAD r06 s=+0.49 eps=0.4335 lam=0.4335 train=  0.0 fresh= 69.2 stale= 50.4 strong= 74.4 zeta=69.770 valRMSE=0.712 rRMSE=6.666 (11s)
+fold5/s1 HAD r07 s=+1.00 eps=0.3686 lam=0.3686 train=  0.0 fresh= 48.7 stale= 69.2 strong= 55.6 zeta=54.690 valRMSE=0.701 rRMSE=6.630 (12s)
+fold5/s1 HAD r08 s=+0.62 eps=0.4164 lam=0.4164 train=  0.0 fresh= 64.1 stale= 48.7 strong= 69.2 zeta=69.414 valRMSE=0.691 rRMSE=6.575 (11s)
+fold5/s1 HAD r09 s=+1.00 eps=0.3686 lam=0.3686 train=  0.0 fresh= 47.0 stale= 63.2 strong= 51.3 zeta=57.033 valRMSE=0.679 rRMSE=6.585 (12s)
+fold5/s1 HAD r10 s=+0.69 eps=0.4075 lam=0.4075 train=  0.0 fresh= 56.4 stale= 46.2 strong= 63.2 zeta=71.369 valRMSE=0.664 rRMSE=6.529 (12s)
+fold5/s1 HAD r11 s=+1.00 eps=0.3686 lam=0.3686 train=  0.0 fresh= 45.3 stale= 54.7 strong= 50.4 zeta=59.513 valRMSE=0.663 rRMSE=6.525 (12s)
+fold5/s1 HAD r12 s=+0.76 eps=0.3981 lam=0.3981 train=  0.0 fresh= 54.7 stale= 47.9 strong= 61.5 zeta=67.077 valRMSE=0.667 rRMSE=6.422 (11s)
+fold5/s1 HAD r13 s=+0.98 eps=0.3708 lam=0.3708 train=  0.0 fresh= 47.0 stale= 54.7 strong= 53.0 zeta=58.413 valRMSE=0.667 rRMSE=6.548 (13s)
