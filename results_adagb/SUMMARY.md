@@ -33,4 +33,6 @@ with the same budget trajectory and selected rounds, so the differences below ar
 
 ## Not rerun here
 * Fraud study on the UPI and card data (`RUN_ADAGB.ps1`, on the authors' machine).
-* Study B quantum runs: only the H2 target is affected, and only through the solver's iteration cap (see above).
+* Study B quantum runs: not rerun (decision 2026-11-05). H2 is solved to its exact fixed point Δ = 0, which gives the
+  same target state as ab (fidelity 1.000000; `studyb_targets.py`), so H1, H2 and H_V targets and all Study B results
+  are unchanged. The paper states that under a†b the H2 Hermitian iteration converges only sublinearly (G′(0) = 1).
