@@ -1,0 +1,12 @@
+======================================================================
+BASELINE MODEL -- Tabular Transformer Fraud Detector
+Device: cpu
+======================================================================
+[INFO] n_features=18, train_size=18475
+[INFO] Trainable parameters: 70,593
+Epoch   1/60 | Loss: 0.0672 | Val AUC: 0.7523 | Val F1: 0.4651 | Prec: 0.9502 | Rec: 0.3079
+Epoch   2/60 | Loss: 0.0459 | Val AUC: 0.8649 | Val F1: 0.5988 | Prec: 0.9800 | Rec: 0.4311
+Epoch   3/60 | Loss: 0.0370 | Val AUC: 0.9158 | Val F1: 0.7574 | Prec: 0.9258 | Rec: 0.6408
+Epoch   4/60 | Loss: 0.0313 | Val AUC: 0.9635 | Val F1: 0.8183 | Prec: 0.9426 | Rec: 0.7229
+Epoch   5/60 | Loss: 0.0242 | Val AUC: 0.9894 | Val F1: 0.8715 | Prec: 0.8320 | Rec: 0.9150
+Epoch   6/60 | Loss: 0.0177 | Val AUC: 0.9917 | Val F1: 0.8830 | Prec: 0.8650 | Rec: 0.9018

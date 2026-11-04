@@ -14,7 +14,8 @@ for u in ["fold0", "fold1", "fold2", "fold3", "fold4", "seed1", "seed2", "seed3"
     kw = dict(color=C[u], lw=1.0, label=u.replace("seed", "seed ")) if u in C else dict(color="0.55", lw=0.7, ls="--", label="folds 0–4" if u == "fold0" else None)
     ax[0].plot(r, [float(t["eps"]) for t in T], **kw)
     ax[1].plot(r, [float(t["train_flip"]) for t in T], **kw)
-ax[0].axhline(0.6586, color="0.3", lw=0.5, ls=":"); ax[0].text(20.6, 0.636, "max. 0.6586", fontsize=5.5, color="0.3", va="top", ha="right")
+import os; sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import had_stack_v2 as _hs; EM = _hs.EPS_MAX   # 0.6586 under HCS_ORDER=ab
+ax[0].axhline(EM, color="0.3", lw=0.5, ls=":"); ax[0].text(20.6, EM - 0.0226, f"max. {EM:.4f}", fontsize=5.5, color="0.3", va="top", ha="right")
 ax[0].set_ylabel(r"Budget $\varepsilon\ (=\lambda)$"); ax[1].set_ylabel("In-loop flip (%)")
 for a in ax: a.set_xlabel("Round"); a.set_xlim(1, 21); a.grid(alpha=0.25, lw=0.4)
 ax[0].set_ylim(0.36, 0.68); ax[1].set_ylim(0, 52)

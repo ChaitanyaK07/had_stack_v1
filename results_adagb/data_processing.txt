@@ -1,0 +1,23 @@
+======================================================================
+DATA PROCESSING PIPELINE -- Fraud Detection (Banking + UPI)
+======================================================================
+[1/5] Loading: fraud_dataset.csv
+      Raw shape: (26393, 65) | Fraud rate: 17.22%
+[2/5] Selecting verified non-leaking features ...
+      Features: 14 | NaN: 0
+[3/5] Engineering features ...
+      Total features: 18
+[4/5] Splitting, scaling, saving ...
+      Train: 18475  Val: 3959  Test: 3959
+      Dimensionality: 18
+      Class weights: 0=0.604  1=2.904
+
+[VERIFY] Leakage checks on training split ...
+  [OK] All features vary within both classes.
+  Max single-feature AUC  : 0.9481
+  Mean single-feature AUC : 0.6500
+  [OK] No perfect single-feature predictor.
+  Support-leakage rule (any feature outside train-legit range) on TEST: precision 0.9948, recall 0.8358, FP=3
+======================================================================
+[DONE] Data processing complete.
+======================================================================
