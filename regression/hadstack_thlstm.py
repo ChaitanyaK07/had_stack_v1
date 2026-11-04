@@ -19,6 +19,8 @@ Mapping of the building blocks (HCS Table I, Study A column -> this regression i
   Controller: eps_r = 0.5 G2/G2_base, lam_r = clip(0.5 G1/G1_base, .1, .9)                (Eq. 19)
   Feedback  : zeta_r on validation, s_r = clip(zeta_r/zeta_1 - 1, -1, 1), k = k_base(1-0.5 s) (Eq. 20)
   Algorithms: 1-2 (Hamiltonian step), 3 (weighted PGD-10), 4 (loop), 5 (worst-case ensemble)
+  Follower  : PGD-10 (default, as in the paper's Study A), QPSO (derivative-free, Study B's Alg. 10 / Eq. 36,
+              20 particles x 15 iterations, beta annealed 1.0 -> 0.3), or the better of the two per window
   "Broken"  : a test day whose absolute forecast error the attack raises by more than tau = one
               training-set standard deviation of daily yield changes (regression analogue of
               "detected fraud flipped"; Def. 6: robustness = share of cases where the response fails).
@@ -242,6 +244,70 @@ def make_pgd(model):
     return pgd
 
 
+def make_qpso(model):
+    """Derivative-free follower: QPSO (Sun et al. 2004) as in Study B (Alg. 10, Eq. 36), one swarm per window, all
+    swarms of a batch evaluated in one forward pass and the whole search compiled into one graph.
+    Search space: one offset per market feature, held over the T days of the window, i.e. the 19-dimensional
+    subset {delta_{i,t,j} = c_{i,j}, |c_{i,j}| <= eps, j in M} of D_eps (Eq. DR). Over all 190 coordinates the
+    same budget of 20 x 15 evaluations leaves the training error unchanged (0.0% broken vs 9.5% for PGD-10).
+    Particles start at random vertices of the box; the Hamiltonian step weights w scale the per-feature spread,
+    as they scale the per-feature PGD step."""
+    @tf.function(reduce_retracing=True)
+    def core(X, true, prev, W, M, eps, n_p, n_it, kse, b0, b1):
+        n, T, d = tf.shape(X)[0], tf.shape(X)[1], tf.shape(X)[2]
+        Xr = tf.repeat(X, n_p, axis=0); tr = tf.repeat(true, n_p); pr = tf.repeat(prev, n_p)
+
+        def F(c):                                                                   # attacker's utility per particle
+            z = tf.reshape(tf.broadcast_to(c, [n, n_p, T, d]), [n * n_p, T, d])
+            f = hybrid(model, Xr + z, pr)
+            o = tf.cond(kse, lambda: att_obj(f, tr, pr, "se"), lambda: att_obj(f, tr, pr, "m"))
+            return tf.reshape(o, [n, n_p])
+        sh = [n, n_p, 1, d]
+        xi = eps * tf.sign(tf.random.uniform(sh, -1.0, 1.0)) * M                    # random vertices of D_eps
+        pb, pf = xi, F(xi)
+        gb = tf.gather(pb, tf.argmax(pf, 1), batch_dims=1)
+        nf = tf.cast(tf.maximum(n_it - 1, 1), tf.float32)
+        for t in tf.range(n_it):
+            b = b0 - (b0 - b1) * tf.cast(t, tf.float32) / nf                          # contraction-expansion, annealed
+            mb = tf.reduce_mean(pb, 1, keepdims=True)
+            phi = tf.random.uniform(sh); u = tf.random.uniform(sh, 1e-7, 1.0)
+            pj = phi * pb + (1 - phi) * gb[:, None]
+            sgn = tf.where(tf.random.uniform(sh) < 0.5, -1.0, 1.0)
+            xi = tf.clip_by_value(pj + sgn * b * W * tf.abs(mb - xi) * tf.math.log(1.0 / u), -eps, eps) * M
+            f = F(xi); better = f > pf
+            pb = tf.where(better[:, :, None, None], xi, pb); pf = tf.maximum(pf, f)
+            gb = tf.gather(pb, tf.argmax(pf, 1), batch_dims=1)
+        return tf.broadcast_to(gb, [n, T, d])
+
+    def qpso(X, true, prev, eps, w, mask, n_p=20, n_it=15, kind="se", beta=(1.0, 0.3)):
+        d = X.shape[-1]
+        W = tf.constant(((np.ones(d) if w is None else w) * mask).reshape(1, 1, 1, d), tf.float32)
+        M = tf.constant(mask.reshape(1, 1, 1, d), tf.float32)
+        out = core(tf.constant(X), tf.constant(true), tf.constant(prev), W, M, tf.constant(eps, tf.float32),
+                   tf.constant(n_p), tf.constant(n_it), tf.constant(kind == "se"),
+                   tf.constant(beta[0], tf.float32), tf.constant(beta[1], tf.float32)).numpy()
+        assert np.abs(out).max() <= eps + 1e-6 and np.abs(out * (1 - mask)).max() == 0.0
+        return out
+    return qpso
+
+
+def make_follower(model, kind):
+    """In-loop attacker best response: 'pgd' (Alg. 3, unchanged), 'qpso', or 'dual' (better of the two per window,
+    scored by the attacker's utility, as Study B's leader plays the better of ALS and QPSO)."""
+    pgd = make_pgd(model)
+    if kind == "pgd":
+        return lambda X, true, prev, eps, w, mask: pgd(X, true, prev, eps, w, mask, steps=10)
+    qp = make_qpso(model)
+    if kind == "qpso":
+        return lambda X, true, prev, eps, w, mask: qp(X, true, prev, eps, w, mask)
+
+    def dual(X, true, prev, eps, w, mask):
+        dp, dq = pgd(X, true, prev, eps, w, mask, steps=10), qp(X, true, prev, eps, w, mask)
+        sp, sq = [(predict(model, X + z, prev) - true) ** 2 for z in (dp, dq)]
+        return np.where((sq > sp)[:, None, None], dq, dp)
+    return dual
+
+
 def predict(model, X, prev):
     return hybrid(model, tf.constant(X), tf.constant(prev)).numpy()
 
@@ -253,11 +319,13 @@ def degraded(e0, ea, tau):
 # =============================================================================================
 # 4. Game loop (Alg. 4) and fixed-budget comparison
 # =============================================================================================
-def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, batch=16, tag="", verbose=True):
+def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, batch=16, tag="", verbose=True,
+         follower="pgd"):
     fixed = (EPS_MAX, 0.5) if fixed is None else fixed
     tf.keras.utils.set_random_seed(seed)
     m = cell13_model(D["window"], D["n_feats"]); m.set_weights(theta0.get_weights())
     pgd = make_pgd(m)
+    att = make_follower(m, follower) if follower != "pgd" else (lambda X, t, p, e, w, mk: pgd(X, t, p, e, w, mk, steps=10))
     ctrl = Controller(D["n_feats"])
     opt = tf.keras.optimizers.AdamW(learning_rate=1e-4, weight_decay=1e-4, clipnorm=1.0)
     tr, va, tau, mask = D["fit"], D["val"], D["sd_delta"], D["market"]
@@ -271,7 +339,7 @@ def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, ba
 
     def diag_val(eps, w, stale):
         f0 = predict(m, va["X"], va["prev"]); e0 = f0 - va["true"]
-        d = pgd(va["X"], va["true"], va["prev"], eps, w, mask, steps=10)
+        d = att(va["X"], va["true"], va["prev"], eps, w, mask)
         fa = predict(m, va["X"] + d, va["prev"]); ea = fa - va["true"]
         fresh = 100 * degraded(e0, ea, tau).mean()
         st = 100 * degraded(e0, predict(m, va["X"] + stale, va["prev"]) - va["true"], tau).mean() if stale is not None else float("nan")
@@ -281,7 +349,7 @@ def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, ba
 
     def train_payoff(eps, w):
         f0 = predict(m, tr["X"], tr["prev"])
-        d = pgd(tr["X"], tr["true"], tr["prev"], eps, w, mask, steps=10)
+        d = att(tr["X"], tr["true"], tr["prev"], eps, w, mask)
         return 100 * degraded(f0 - tr["true"], predict(m, tr["X"] + d, tr["prev"]) - tr["true"], tau).mean()
 
     log, s, zeta1, stale = [], 0.0, None, None
@@ -298,12 +366,12 @@ def game(theta0, D, seed, rounds=30, patience=6, controller=True, fixed=None, ba
         n_hit = n_brk = 0
         for b in np.array_split(rng.permutation(n), math.ceil(n / batch)):
             x, lt, dt, tv, pv = tr["X"][b], tr["lvl"][b], tr["dlt"][b], tr["true"][b], tr["prev"][b]
-            d = pgd(x, tv, pv, eps, w, mask, steps=10)                                   # follower, Alg. 3
+            d = att(x, tv, pv, eps, w, mask)                                             # follower, Alg. 3 (or QPSO)
             f0, fa = predict(m, x, pv), predict(m, x + d, pv)
             n_brk += int(degraded(f0 - tv, fa - tv, tau).sum()); n_hit += len(b)
             train_step(tf.constant(x), tf.constant(x + d), tf.constant(lt), tf.constant(dt), tf.constant(lam, tf.float32))  # leader
         # validation: checkpoint criterion (robust RMSE at eps=0.5, base weights), feedback, diagnostics
-        dref = pgd(va["X"], va["true"], va["prev"], 0.5, ctrl.base_w, mask, steps=10)
+        dref = att(va["X"], va["true"], va["prev"], 0.5, ctrl.base_w, mask)             # checkpoint: in-loop attack, eps 0.5
         r_rmse = float(np.sqrt(np.mean((predict(m, va["X"] + dref, va["prev"]) - va["true"]) ** 2)))
         fr, st, sg, dfresh, Lc, La, vr = diag_val(eps, w, stale)
         zeta = (La - Lc) / max(Lc, 1e-12)
