@@ -5,3 +5,5 @@ I0000 00:00:1793813431.005846    1147 port.cc:153] oneDNN custom operations are 
 Hamiltonian layer (order adagb) reproduces Table VI (Gamma, eps), eps max 0.6428; step weights in [0.500, 1.432], mean 1.000
 
 === fixed: rows 1318, split 1054, fit 940 val 104 test 254 (2019-04-15..2020-04-16), features 38 (19 market), tau = 0.2804
+fixed/s1 HAD r00 theta0  eps=0.5000 train=  7.1 fresh= 43.3 strong= 45.2 valRMSE=4.200
+fixed/s1 HAD r01 s=+0.00 eps=0.5000 lam=0.5000 train=  5.1 fresh= 39.4 stale=  nan strong= 42.3 zeta=3.516 valRMSE=3.864 rRMSE=8.219 (15s)
