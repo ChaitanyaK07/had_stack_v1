@@ -2,3 +2,4 @@ WARNING: All log messages before absl::InitializeLog() is called are written to 
 I0000 00:00:1793817813.481771    7425 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
 I0000 00:00:1793817814.656500    7425 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+{'best_round': 29, 'Undefended': {'clean_rmse': 8.163226127624512, 'adv_rmse': 13.131364822387695}, 'HAD-Stack': {'clean_rmse': 6.267587661743164, 'adv_rmse': 11.961947441101074}}
