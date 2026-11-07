@@ -1,0 +1,16 @@
+== confirmation_results.jsonl: old 24 rows, new 24 rows, same keys True
+  baseline     cv     n=5  clean_auc 0.9947->0.9947 (max|d| 0.0000) | robust_recall@0.5 51.5512->51.5512 (max|d| 0.0000) | robust_recall@1.0 18.1298->18.1738 (max|d| 0.2200)
+  baseline     seeds  n=3  clean_auc 0.9942->0.9942 (max|d| 0.0000) | robust_recall@0.5 46.6276->46.6276 (max|d| 0.0000) | robust_recall@1.0 13.3431->13.3431 (max|d| 0.0000)
+  pgdat066     cv     n=5  clean_auc 0.9914->0.9924 (max|d| 0.0054) | robust_recall@0.5 70.6271->70.7151 (max|d| 0.3300) | robust_recall@1.0 50.8251->51.5512 (max|d| 3.6304)
+  pgdat066     seeds  n=3  clean_auc 0.9923->0.9932 (max|d| 0.0013) | robust_recall@0.5 70.0391->69.8925 (max|d| 0.4399) | robust_recall@1.0 50.2444->50.1466 (max|d| 0.4399)
+  v3           cv     n=5  clean_auc 0.9911->0.9895 (max|d| 0.0075) | robust_recall@0.5 70.3410->70.2090 (max|d| 0.4400) | robust_recall@1.0 53.1133->52.1232 (max|d| 5.1705)
+  v3           seeds  n=3  clean_auc 0.9911->0.9930 (max|d| 0.0021) | robust_recall@0.5 69.9413->70.0880 (max|d| 0.4399) | robust_recall@1.0 51.0753->51.1241 (max|d| 0.1466)
+== lambda_control_results.jsonl: old 32 rows, new 32 rows, same keys True
+  baseline     cv     n=5  clean_auc 0.9947->0.9947 (max|d| 0.0000) | robust_recall@0.5 51.5512->51.5512 (max|d| 0.0000) | robust_recall@1.0 18.1298->18.1518 (max|d| 0.1100)
+  baseline     seeds  n=3  clean_auc 0.9942->0.9942 (max|d| 0.0000) | robust_recall@0.5 46.6276->46.6276 (max|d| 0.0000) | robust_recall@1.0 13.2454->13.3431 (max|d| 0.1466)
+  pgdat066     cv     n=5  clean_auc 0.9914->0.9924 (max|d| 0.0054) | robust_recall@0.5 70.6271->70.7151 (max|d| 0.3300) | robust_recall@1.0 50.7811->51.5072 (max|d| 3.4103)
+  pgdat066     seeds  n=3  clean_auc 0.9923->0.9932 (max|d| 0.0013) | robust_recall@0.5 70.0391->69.8925 (max|d| 0.4399) | robust_recall@1.0 50.2444->50.1466 (max|d| 0.4399)
+  pgdat066lam  cv     n=5  clean_auc 0.9886->0.9911 (max|d| 0.0063) | robust_recall@0.5 70.1430->70.5611 (max|d| 2.0902) | robust_recall@1.0 51.2651->52.4092 (max|d| 3.9604)
+  pgdat066lam  seeds  n=3  clean_auc 0.9919->0.9928 (max|d| 0.0012) | robust_recall@0.5 69.7458->69.7947 (max|d| 0.1466) | robust_recall@1.0 50.7820->50.9286 (max|d| 0.4399)
+  v3           cv     n=5  clean_auc 0.9911->0.9895 (max|d| 0.0075) | robust_recall@0.5 70.3410->70.2090 (max|d| 0.4400) | robust_recall@1.0 52.9813->52.0352 (max|d| 5.0605)
+  v3           seeds  n=3  clean_auc 0.9911->0.9930 (max|d| 0.0021) | robust_recall@0.5 69.9413->70.0880 (max|d| 0.4399) | robust_recall@1.0 51.0264->51.1241 (max|d| 0.2933)
