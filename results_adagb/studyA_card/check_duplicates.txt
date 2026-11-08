@@ -1,0 +1,9 @@
+exact duplicate transactions (extra copies): 1081
+
+fixed split, three seeds: test fraud with a copy in training = [4, 4, 4] of [74, 74, 74]
+  eps 0.5: RR baseline 62.9%  HAD-Stack 69.5%  paired gain +6.7 [+3.3, +10.5]  (210 fraud rows)
+  eps 1.0: RR baseline 51.4%  HAD-Stack 62.4%  paired gain +11.0 [+7.1, +15.2]  (210 fraud rows)
+
+five-fold CV: test fraud with a copy in training = [2, 3, 5, 8, 6] of [99, 99, 98, 98, 98]
+  eps 0.5: RR baseline 53.7%  HAD-Stack 74.1%  paired gain +20.5 [+16.7, +24.4]  (468 fraud rows)
+  eps 1.0: RR baseline 34.8%  HAD-Stack 57.6%  paired gain +22.6 [+18.8, +26.7]  (468 fraud rows)

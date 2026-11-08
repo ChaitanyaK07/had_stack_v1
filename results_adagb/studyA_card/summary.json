@@ -1,0 +1,300 @@
+{
+ "scratch / seeds (fixed split)": {
+  "units": [
+   "seed1",
+   "seed2",
+   "seed3"
+  ],
+  "baseline": {
+   "auc": [
+    0.960423986169625,
+    1.1102230246251565e-16
+   ],
+   "recall": [
+    0.7702702702702703,
+    0.0
+   ],
+   "fp": [
+    24.0,
+    0.0
+   ],
+   "fn": [
+    17.0,
+    0.0
+   ],
+   "cost": [
+    1724.0,
+    0.0
+   ],
+   "robust_recall@0.5": [
+    64.86486486486487,
+    0.0
+   ],
+   "robust_recall@1.0": [
+    54.054054054054056,
+    0.0
+   ],
+   "broken@0.5": [
+    15.789473684210526,
+    0.0
+   ],
+   "broken@1.0": [
+    29.82456140350877,
+    0.0
+   ]
+  },
+  "v3": {
+   "auc": [
+    0.9629918325754003,
+    0.0006385248437158073
+   ],
+   "recall": [
+    0.7837837837837838,
+    0.01911099408612292
+   ],
+   "fp": [
+    25.666666666666668,
+    2.494438257849294
+   ],
+   "fn": [
+    16.0,
+    1.4142135623730951
+   ],
+   "cost": [
+    1625.6666666666667,
+    139.0667305848367
+   ],
+   "robust_recall@0.5": [
+    71.17117117117117,
+    4.177305628601671
+   ],
+   "robust_recall@1.0": [
+    64.41441441441441,
+    3.185165681020485
+   ],
+   "broken@0.5": [
+    9.269005847953217,
+    3.1024480361873774
+   ],
+   "broken@1.0": [
+    17.86549707602339,
+    2.026212413926365
+   ]
+  },
+  "units_above_baseline_both_budgets": "3 of 3",
+  "paired_bootstrap@0.5": [
+   6.306306306306307,
+   3.1531531531531534,
+   9.45945945945946
+  ],
+  "paired_bootstrap@1.0": [
+   10.36036036036036,
+   6.756756756756757,
+   14.864864864864865
+  ],
+  "diagnostics": [
+   {
+    "rounds": 8,
+    "eps_first": 0.5,
+    "eps_max": 0.5742235955610825,
+    "round_eps_max": 8,
+    "train_flip_first": 9.747292418772563,
+    "train_flip_last": 5.072463768115942,
+    "strong_first": 18.333333333333332,
+    "strong_last": 8.333333333333334,
+    "fresh_minus_stale_second_half": 0.0,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 333.5295309126377
+   },
+   {
+    "rounds": 7,
+    "eps_first": 0.5,
+    "eps_max": 0.566332251062577,
+    "round_eps_max": 7,
+    "train_flip_first": 11.469534050179211,
+    "train_flip_last": 6.521739130434782,
+    "strong_first": 20.634920634920636,
+    "strong_last": 10.0,
+    "fresh_minus_stale_second_half": 1.6071428571428572,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 366.90357855388095
+   },
+   {
+    "rounds": 16,
+    "eps_first": 0.5,
+    "eps_max": 0.5860298791511137,
+    "round_eps_max": 15,
+    "train_flip_first": 12.274368231046932,
+    "train_flip_last": 5.0,
+    "strong_first": 14.516129032258064,
+    "strong_last": 3.1746031746031744,
+    "fresh_minus_stale_second_half": 0.6017434296122822,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 320.61046224832535
+   }
+  ]
+ },
+ "scratch / five-fold CV": {
+  "units": [
+   "fold0",
+   "fold1",
+   "fold2",
+   "fold3",
+   "fold4"
+  ],
+  "baseline": {
+   "auc": [
+    0.9699996483136915,
+    0.007141412079119364
+   ],
+   "recall": [
+    0.755988455988456,
+    0.05321349101583258
+   ],
+   "fp": [
+    39.2,
+    44.4585199933601
+   ],
+   "fn": [
+    24.0,
+    5.176871642217914
+   ],
+   "cost": [
+    2439.2,
+    551.376967237479
+   ],
+   "robust_recall@0.5": [
+    54.685631828488965,
+    7.991751023249091
+   ],
+   "robust_recall@1.0": [
+    36.592455163883734,
+    3.6503064874487676
+   ],
+   "broken@0.5": [
+    27.843661971830983,
+    7.704692153693537
+   ],
+   "broken@1.0": [
+    51.56547161758429,
+    3.790601235379142
+   ]
+  },
+  "v3": {
+   "auc": [
+    0.9739540266057635,
+    0.004191793974571877
+   ],
+   "recall": [
+    0.8028447742733457,
+    0.004910101022174171
+   ],
+   "fp": [
+    23.2,
+    4.707440918375928
+   ],
+   "fn": [
+    19.4,
+    0.4898979485566356
+   ],
+   "cost": [
+    1963.2,
+    48.230280944651355
+   ],
+   "robust_recall@0.5": [
+    75.00721500721501,
+    2.1961870916067316
+   ],
+   "robust_recall@1.0": [
+    58.3632240775098,
+    7.564480308431983
+   ],
+   "broken@0.5": [
+    6.566780266147354,
+    2.877427617961151
+   ],
+   "broken@1.0": [
+    27.282862706913335,
+    9.545484206091619
+   ]
+  },
+  "units_above_baseline_both_budgets": "5 of 5",
+  "paired_bootstrap@0.5": [
+   20.32520325203252,
+   16.666666666666668,
+   23.78048780487805
+  ],
+  "paired_bootstrap@1.0": [
+   21.747967479674795,
+   17.88617886178862,
+   25.411585365853654
+  ],
+  "diagnostics": [
+   {
+    "rounds": 11,
+    "eps_first": 0.5,
+    "eps_max": 0.5555765008302381,
+    "round_eps_max": 7,
+    "train_flip_first": 16.728624535315983,
+    "train_flip_last": 8.550185873605948,
+    "strong_first": 14.583333333333334,
+    "strong_last": 4.166666666666667,
+    "fresh_minus_stale_second_half": 0.3321256038647342,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 269.3289295543324
+   },
+   {
+    "rounds": 10,
+    "eps_first": 0.5,
+    "eps_max": 0.5615415084925817,
+    "round_eps_max": 7,
+    "train_flip_first": 16.730038022813687,
+    "train_flip_last": 6.343283582089552,
+    "strong_first": 21.73913043478261,
+    "strong_last": 6.818181818181818,
+    "fresh_minus_stale_second_half": 0.010101010101010211,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 269.0293671607971
+   },
+   {
+    "rounds": 18,
+    "eps_first": 0.5,
+    "eps_max": 0.5750500937857882,
+    "round_eps_max": 16,
+    "train_flip_first": 17.786561264822133,
+    "train_flip_last": 4.444444444444445,
+    "strong_first": 6.25,
+    "strong_last": 4.166666666666667,
+    "fresh_minus_stale_second_half": 0.4629629629629629,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 272.2224432229996
+   },
+   {
+    "rounds": 11,
+    "eps_first": 0.5,
+    "eps_max": 0.5493105051554508,
+    "round_eps_max": 7,
+    "train_flip_first": 11.029411764705882,
+    "train_flip_last": 3.2490974729241877,
+    "strong_first": 20.408163265306122,
+    "strong_last": 10.204081632653061,
+    "fresh_minus_stale_second_half": -0.34013605442176864,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 289.8076928312128
+   },
+   {
+    "rounds": 16,
+    "eps_first": 0.5,
+    "eps_max": 0.565319542696671,
+    "round_eps_max": 15,
+    "train_flip_first": 33.035714285714285,
+    "train_flip_last": 10.37037037037037,
+    "strong_first": 11.538461538461538,
+    "strong_last": 3.9215686274509802,
+    "fresh_minus_stale_second_half": -0.24509803921568635,
+    "exploitability_gap_last": 0.0,
+    "seconds_per_round": 300.22071665525436
+   }
+  ]
+ }
+}
