@@ -10,7 +10,8 @@ Per track and setting (seeds on the fixed split; five-fold CV):
     strong attack and exploitability gap
 """
 import os, sys, glob, json, csv, numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__)); RES = os.path.join(HERE, "results")
+HERE = os.path.dirname(os.path.abspath(__file__))
+RES = os.path.join(HERE, sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "results")   # e.g. python summarize.py results_gpu
 smoke = "--include-smoke" in sys.argv
 ms = lambda v, d=1: f"{np.mean(v):.{d}f} ± {np.std(v):.{d}f}"
 

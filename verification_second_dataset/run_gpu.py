@@ -207,20 +207,21 @@ def main():
     ap.add_argument("--unit", required=True, help="seed1|seed2|seed3|fold0..fold4")
     ap.add_argument("--device", default="auto"); ap.add_argument("--rounds", type=int, default=30)
     ap.add_argument("--data", default=os.path.join(HERE, "data")); ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--results", default="results", help="output folder (relative to this folder), e.g. results_gpu")
     a = ap.parse_args()
     dev = set_device(a.device); torch.set_num_threads(max(1, os.cpu_count() // 2))
     if a.track == "pretrained" and a.unit.startswith("fold"): sys.exit("pretrained track uses seeds only (see prep.py)")
     split = "fixed" if a.unit.startswith("seed") else a.unit
     seed = int(a.unit[4:]) if a.unit.startswith("seed") else 42
     d = f"{a.data}/{a.track}_{split}"; tag = f"{a.track}_{a.unit}" + ("_SMOKE" if a.smoke else "")
-    out = os.path.join(HERE, "results", tag); os.makedirs(out, exist_ok=True)
+    RES = os.path.join(HERE, a.results); out = os.path.join(RES, tag); os.makedirs(out, exist_ok=True)
     if os.path.exists(f"{out}/results.json"): print("already done:", out); return
     tr, va, te, S = loaders(d, a.smoke); nf = S["train"][0].shape[1]
     print(f"[{tag}] device {dev}, features {nf}, rows train/val/test {len(S['train'][1])}/{len(S['val'][1])}/{len(S['test'][1])}, "
           f"fraud {int(S['train'][1].sum())}/{int(S['val'][1].sum())}/{int(S['test'][1].sum())}", flush=True)
     t0 = time.time()
     if a.track == "scratch":
-        base_dir = os.path.join(HERE, "results", f"scratch_baseline_{split}" + ("_SMOKE" if a.smoke else "")); os.makedirs(base_dir, exist_ok=True)
+        base_dir = os.path.join(RES, f"scratch_baseline_{split}" + ("_SMOKE" if a.smoke else "")); os.makedirs(base_dir, exist_ok=True)
         base = f"{base_dir}/baseline.pt"
         if not os.path.exists(base):
             if a.smoke: bm.HP["epochs"] = 2
