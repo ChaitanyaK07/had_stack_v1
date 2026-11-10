@@ -1,0 +1,21 @@
+[scratch_seed3] device cuda, features 30, rows train/val/test 199364/42721/42722, fraud 344/74/74
+[v3] r 1 eps 0.5000 lam 0.500 rAUC 0.9482 s +0.000 train 12.5 fresh 12.7 stale nan strong 12.7 (42s)
+[v3] r 2 eps 0.5000 lam 0.500 rAUC 0.9539 s +0.322 train 10.3 fresh 22.6 stale 22.6 strong 25.8 (41s)
+[v3] r 3 eps 0.4556 lam 0.456 rAUC 0.9399 s -0.056 train 7.5 fresh 12.7 stale 12.7 strong 12.7 (41s)
+[v3] r 4 eps 0.5078 lam 0.508 rAUC 0.9452 s -0.400 train 8.9 fresh 12.7 stale 9.5 strong 12.7 (41s)
+[v3] r 5 eps 0.5565 lam 0.557 rAUC 0.9502 s -0.138 train 7.9 fresh 11.1 stale 11.1 strong 11.1 (41s)
+[v3] r 6 eps 0.5194 lam 0.519 rAUC 0.9459 s -0.432 train 7.6 fresh 6.2 stale 6.2 strong 6.2 (45s)
+[v3] r 7 eps 0.5611 lam 0.561 rAUC 0.9269 s -0.187 train 6.4 fresh 9.5 stale 7.9 strong 9.5 (44s)
+[v3] r 8 eps 0.5263 lam 0.526 rAUC 0.9506 s -0.398 train 6.7 fresh 12.7 stale 12.7 strong 12.7 (42s)
+[fbat05] r 1 eps 0.6428 lam 0.500 rAUC 0.9480 s +0.000 train 13.2 fresh 11.1 stale nan strong 22.2 (43s)
+[fbat05] r 2 eps 0.6428 lam 0.500 rAUC 0.9544 s +0.402 train 9.6 fresh 20.6 stale 17.5 strong 34.9 (42s)
+[fbat05] r 3 eps 0.6428 lam 0.500 rAUC 0.9393 s +0.061 train 10.2 fresh 12.7 stale 12.7 strong 15.9 (41s)
+[fbat05] r 4 eps 0.6428 lam 0.500 rAUC 0.9450 s -0.423 train 9.2 fresh 9.5 stale 6.3 strong 12.7 (41s)
+[fbat05] r 5 eps 0.6428 lam 0.500 rAUC 0.9508 s -0.041 train 8.2 fresh 11.1 stale 11.1 strong 17.5 (41s)
+[fbat05] r 6 eps 0.6428 lam 0.500 rAUC 0.9478 s -0.384 train 6.8 fresh 6.2 stale 6.2 strong 6.2 (41s)
+[fbat05] r 7 eps 0.6428 lam 0.500 rAUC 0.9289 s -0.114 train 5.7 fresh 7.9 stale 7.9 strong 11.1 (42s)
+[fbat05] r 8 eps 0.6428 lam 0.500 rAUC 0.9517 s -0.355 train 6.1 fresh 4.8 stale 3.2 strong 12.9 (42s)
+[scratch_seed3] baseline AUC 0.9702 recall 75.7 FP 22 FN 18 cost 1822 | robust recall 0.5: 64.9%  1.0: 43.2%
+[scratch_seed3] v3       AUC 0.9712 recall 75.7 FP 21 FN 18 cost 1821 | robust recall 0.5: 64.9%  1.0: 51.4%
+[scratch_seed3] fbat05   AUC 0.9721 recall 75.7 FP 22 FN 18 cost 1822 | robust recall 0.5: 64.9%  1.0: 54.1%
+[scratch_seed3] done in 11.8 min -> /content/had_stack_v1/verification_second_dataset/results_gpu/scratch_seed3

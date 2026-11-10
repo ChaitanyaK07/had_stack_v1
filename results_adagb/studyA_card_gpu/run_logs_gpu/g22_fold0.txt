@@ -1,0 +1,51 @@
+[scratch_fold0] device cuda, features 30, rows train/val/test 193668/34177/56962, fraud 334/59/99
+[baseline] epoch  1 val AUC 0.9569
+[baseline] epoch  2 val AUC 0.9681
+[baseline] epoch  3 val AUC 0.9734
+[baseline] epoch  4 val AUC 0.9712
+[baseline] epoch  5 val AUC 0.9794
+[baseline] epoch  6 val AUC 0.9785
+[baseline] epoch  7 val AUC 0.9815
+[baseline] epoch  8 val AUC 0.9801
+[baseline] epoch  9 val AUC 0.9839
+[baseline] epoch 10 val AUC 0.9840
+[baseline] epoch 11 val AUC 0.9822
+[baseline] epoch 12 val AUC 0.9873
+[baseline] epoch 13 val AUC 0.9801
+[baseline] epoch 14 val AUC 0.9783
+[baseline] epoch 15 val AUC 0.9786
+[baseline] epoch 16 val AUC 0.9838
+[baseline] epoch 17 val AUC 0.9838
+[baseline] epoch 18 val AUC 0.9806
+[baseline] epoch 19 val AUC 0.9812
+[baseline] epoch 20 val AUC 0.9774
+[baseline] epoch 21 val AUC 0.9833
+[baseline] epoch 22 val AUC 0.9846
+[v3] r 1 eps 0.5000 lam 0.500 rAUC 0.9453 s +0.000 train 24.3 fresh 18.8 stale nan strong 20.8 (39s)
+[v3] r 2 eps 0.5000 lam 0.500 rAUC 0.9598 s +0.212 train 16.0 fresh 18.8 stale 18.8 strong 18.8 (39s)
+[v3] r 3 eps 0.4706 lam 0.471 rAUC 0.9405 s +0.130 train 13.1 fresh 21.7 stale 21.7 strong 23.9 (40s)
+[v3] r 4 eps 0.4818 lam 0.482 rAUC 0.9530 s +0.105 train 11.9 fresh 13.0 stale 13.0 strong 15.2 (40s)
+[v3] r 5 eps 0.4854 lam 0.485 rAUC 0.9519 s -0.314 train 9.3 fresh 10.6 stale 10.6 strong 10.6 (40s)
+[v3] r 6 eps 0.5443 lam 0.544 rAUC 0.9477 s -0.109 train 13.2 fresh 13.0 stale 8.7 strong 15.2 (40s)
+[v3] r 7 eps 0.5153 lam 0.515 rAUC 0.9543 s -0.355 train 10.0 fresh 14.3 stale 14.3 strong 14.3 (40s)
+[v3] r 8 eps 0.5502 lam 0.550 rAUC 0.9370 s -0.215 train 10.2 fresh 10.9 stale 8.7 strong 15.2 (39s)
+[fbat05] r 1 eps 0.6428 lam 0.500 rAUC 0.9449 s +0.000 train 25.0 fresh 16.7 stale nan strong 27.1 (39s)
+[fbat05] r 2 eps 0.6428 lam 0.500 rAUC 0.9578 s +0.181 train 14.2 fresh 18.8 stale 20.8 strong 27.1 (39s)
+[fbat05] r 3 eps 0.6428 lam 0.500 rAUC 0.9416 s +0.143 train 13.8 fresh 19.6 stale 21.7 strong 30.4 (40s)
+[fbat05] r 4 eps 0.6428 lam 0.500 rAUC 0.9527 s +0.080 train 11.5 fresh 14.9 stale 12.8 strong 19.1 (40s)
+[fbat05] r 5 eps 0.6428 lam 0.500 rAUC 0.9526 s -0.332 train 9.6 fresh 10.4 stale 8.3 strong 16.7 (39s)
+[fbat05] r 6 eps 0.6428 lam 0.500 rAUC 0.9491 s -0.202 train 11.4 fresh 8.7 stale 10.9 strong 23.9 (39s)
+[fbat05] r 7 eps 0.6428 lam 0.500 rAUC 0.9605 s -0.401 train 11.1 fresh 10.2 stale 12.2 strong 18.4 (39s)
+[fbat05] r 8 eps 0.6428 lam 0.500 rAUC 0.9352 s -0.314 train 7.4 fresh 4.3 stale 4.3 strong 23.9 (39s)
+[fbat05] r 9 eps 0.6428 lam 0.500 rAUC 0.9626 s -0.334 train 10.7 fresh 4.3 stale 6.4 strong 14.9 (39s)
+[fbat05] r10 eps 0.6428 lam 0.500 rAUC 0.9659 s -0.186 train 7.7 fresh 6.4 stale 8.5 strong 14.9 (39s)
+[fbat05] r11 eps 0.6428 lam 0.500 rAUC 0.9470 s -0.403 train 7.0 fresh 10.2 stale 10.2 strong 12.2 (39s)
+[fbat05] r12 eps 0.6428 lam 0.500 rAUC 0.9526 s -0.366 train 5.5 fresh 8.5 stale 6.4 strong 19.1 (38s)
+[fbat05] r13 eps 0.6428 lam 0.500 rAUC 0.9509 s -0.081 train 6.3 fresh 6.4 stale 8.5 strong 14.9 (39s)
+[fbat05] r14 eps 0.6428 lam 0.500 rAUC 0.9557 s -0.300 train 5.1 fresh 4.2 stale 4.2 strong 6.2 (40s)
+[fbat05] r15 eps 0.6428 lam 0.500 rAUC 0.9528 s -0.381 train 5.5 fresh 4.3 stale 4.3 strong 8.5 (39s)
+[fbat05] r16 eps 0.6428 lam 0.500 rAUC 0.9500 s -0.431 train 7.7 fresh 8.0 stale 6.0 strong 8.0 (38s)
+[scratch_fold0] baseline AUC 0.9650 recall 65.7 FP 19 FN 34 cost 3419 | robust recall 0.5: 41.4%  1.0: 22.2%
+[scratch_fold0] v3       AUC 0.9708 recall 79.8 FP 26 FN 20 cost 2026 | robust recall 0.5: 64.6%  1.0: 41.4%
+[scratch_fold0] fbat05   AUC 0.9786 recall 79.8 FP 27 FN 20 cost 2027 | robust recall 0.5: 73.7%  1.0: 54.5%
+[scratch_fold0] done in 19.4 min -> /content/had_stack_v1/verification_second_dataset/results_gpu/scratch_fold0

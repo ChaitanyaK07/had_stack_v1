@@ -1,0 +1,23 @@
+[scratch_seed2] device cuda, features 30, rows train/val/test 199364/42721/42722, fraud 344/74/74
+[v3] r 1 eps 0.5000 lam 0.500 rAUC 0.9545 s +0.000 train 12.5 fresh 11.1 stale nan strong 11.1 (40s)
+[v3] r 2 eps 0.5000 lam 0.500 rAUC 0.9499 s -0.246 train 9.0 fresh 11.1 stale 12.7 strong 12.7 (40s)
+[v3] r 3 eps 0.5347 lam 0.535 rAUC 0.9555 s +0.024 train 9.6 fresh 14.3 stale 14.3 strong 15.9 (40s)
+[v3] r 4 eps 0.4967 lam 0.497 rAUC 0.9378 s -0.158 train 7.5 fresh 13.3 stale 13.3 strong 13.3 (40s)
+[v3] r 5 eps 0.5222 lam 0.522 rAUC 0.9506 s -0.485 train 7.6 fresh 6.3 stale 4.8 strong 7.9 (40s)
+[v3] r 6 eps 0.5687 lam 0.569 rAUC 0.9434 s -0.226 train 9.2 fresh 11.1 stale 11.1 strong 11.1 (40s)
+[v3] r 7 eps 0.5318 lam 0.532 rAUC 0.9491 s -0.553 train 8.9 fresh 6.2 stale 6.2 strong 6.2 (40s)
+[v3] r 8 eps 0.5784 lam 0.578 rAUC 0.9295 s -0.372 train 6.8 fresh 7.9 stale 4.8 strong 7.9 (40s)
+[v3] r 9 eps 0.5525 lam 0.553 rAUC 0.9494 s -0.483 train 6.8 fresh 7.9 stale 9.5 strong 9.5 (39s)
+[fbat05] r 1 eps 0.6428 lam 0.500 rAUC 0.9544 s +0.000 train 11.3 fresh 11.1 stale nan strong 20.6 (41s)
+[fbat05] r 2 eps 0.6428 lam 0.500 rAUC 0.9499 s -0.299 train 10.0 fresh 9.5 stale 9.5 strong 15.9 (40s)
+[fbat05] r 3 eps 0.6428 lam 0.500 rAUC 0.9566 s +0.037 train 8.6 fresh 15.9 stale 15.9 strong 30.2 (40s)
+[fbat05] r 4 eps 0.6428 lam 0.500 rAUC 0.9382 s -0.136 train 7.1 fresh 11.7 stale 11.7 strong 16.7 (39s)
+[fbat05] r 5 eps 0.6428 lam 0.500 rAUC 0.9519 s -0.510 train 8.9 fresh 3.2 stale 4.8 strong 9.5 (39s)
+[fbat05] r 6 eps 0.6428 lam 0.500 rAUC 0.9453 s -0.238 train 8.5 fresh 12.7 stale 11.1 strong 14.3 (39s)
+[fbat05] r 7 eps 0.6428 lam 0.500 rAUC 0.9496 s -0.551 train 6.1 fresh 6.2 stale 6.2 strong 9.4 (40s)
+[fbat05] r 8 eps 0.6428 lam 0.500 rAUC 0.9308 s -0.398 train 5.4 fresh 4.8 stale 4.8 strong 9.5 (40s)
+[fbat05] r 9 eps 0.6428 lam 0.500 rAUC 0.9496 s -0.498 train 7.9 fresh 7.9 stale 6.3 strong 14.3 (40s)
+[scratch_seed2] baseline AUC 0.9702 recall 75.7 FP 22 FN 18 cost 1822 | robust recall 0.5: 64.9%  1.0: 43.2%
+[scratch_seed2] v3       AUC 0.9725 recall 78.4 FP 22 FN 16 cost 1622 | robust recall 0.5: 68.9%  1.0: 62.2%
+[scratch_seed2] fbat05   AUC 0.9728 recall 78.4 FP 22 FN 16 cost 1622 | robust recall 0.5: 68.9%  1.0: 60.8%
+[scratch_seed2] done in 12.6 min -> /content/had_stack_v1/verification_second_dataset/results_gpu/scratch_seed2

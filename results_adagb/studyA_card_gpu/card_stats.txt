@@ -1,0 +1,17 @@
+total rounds 76 per run {'seed1': 8, 'seed2': 9, 'seed3': 8, 'fold0': 8, 'fold1': 16, 'fold2': 8, 'fold3': 8, 'fold4': 11}
+signal range (all logged) -0.69 0.32
+signal range (used) -0.63 0.32
+eps range 0.4556 0.589
+runs with eps < 0.5: ['seed2', 'seed3', 'fold0', 'fold1', 'fold2', 'fold3']
+eps max per run {'seed1': 0.5738, 'seed2': 0.5784, 'seed3': 0.5611, 'fold0': 0.5502, 'fold1': 0.5815, 'fold2': 0.5412, 'fold3': 0.5608, 'fold4': 0.589}
+train flip first->last {'seed1': (11.6, 8.6), 'seed2': (12.5, 6.8), 'seed3': (12.5, 6.7), 'fold0': (24.3, 10.2), 'fold1': (18.6, 4.5), 'fold2': (24.7, 7.7), 'fold3': (12.9, 4.0), 'fold4': (36.1, 7.8)} falls in 8
+  first range 11.6 36.1 last range 4.0 10.2
+strong first->last {'seed1': (12.7, 6.5), 'seed2': (11.1, 9.5), 'seed3': (12.7, 12.7), 'fold0': (20.8, 15.2), 'fold1': (20.5, 12.2), 'fold2': (12.2, 8.0), 'fold3': (14.6, 8.2), 'fold4': (19.1, 0.0)} falls in 7
+  falling runs: first range 11.1 20.8 last range 0.0 15.2
+max |fresh-stale| 4.3
+fresh-stale mean over second halves 0.3 rounds 37
+strong - fresh mean over all rounds 0.61 last round per run {'seed1': 0.0, 'seed2': 1.6, 'seed3': 0.0, 'fold0': 4.3, 'fold1': 0.0, 'fold2': 0.0, 'fold3': 0.0, 'fold4': 0.0}
+checkpoint rounds {'seed1': 2, 'seed2': 3, 'seed3': 2, 'fold0': 2, 'fold1': 10, 'fold2': 2, 'fold3': 2, 'fold4': 5} range 2 10 | stop rounds 8 16
+seconds per round {'seed1': 40, 'seed2': 40, 'seed3': 42, 'fold0': 40, 'fold1': 39, 'fold2': 39, 'fold3': 39, 'fold4': 38}
+scratch / seeds (fixed split) paired [2.2522522522522523, -0.9009009009009009, 4.954954954954955] [14.414414414414415, 9.90990990990991, 19.81981981981982] 2 of 3
+scratch / five-fold CV paired [21.13821138211382, 17.479674796747968, 24.59349593495935] [22.764227642276424, 19.308943089430894, 26.422764227642276] 5 of 5

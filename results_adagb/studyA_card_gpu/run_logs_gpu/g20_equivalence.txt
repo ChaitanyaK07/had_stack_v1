@@ -1,0 +1,4 @@
+1. fraud-only PGD vs released attack, max |diff| = 0.0
+2. run_gpu.pgd vs released pgd, max |diff| = 0.0
+3. GPU vs CPU pgd, max |diff| = 0.0 (small float differences are expected on GPU)
+ALL EQUIVALENCE CHECKS PASSED

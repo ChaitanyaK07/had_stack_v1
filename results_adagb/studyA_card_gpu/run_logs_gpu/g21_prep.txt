@@ -1,0 +1,7 @@
+data/scratch_fixed {'y_train': [199364, 344], 'y_val': [42721, 74], 'y_test': [42722, 74]}
+data/scratch_fold0 {'y_train': [193668, 334], 'y_val': [34177, 59], 'y_test': [56962, 99]}
+data/scratch_fold1 {'y_train': [193668, 334], 'y_val': [34177, 59], 'y_test': [56962, 99]}
+data/scratch_fold2 {'y_train': [193669, 335], 'y_val': [34177, 59], 'y_test': [56961, 98]}
+data/scratch_fold3 {'y_train': [193669, 335], 'y_val': [34177, 59], 'y_test': [56961, 98]}
+data/scratch_fold4 {'y_train': [193669, 335], 'y_val': [34177, 59], 'y_test': [56961, 98]}
+data/pretrained_fixed {'y_train': [187450, 328], 'y_val': [33080, 58], 'y_test': [55133, 87]}
