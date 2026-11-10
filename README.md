@@ -13,19 +13,21 @@ BCE and margin losses) and transfer attacks from the other models.
 
 | Model | Robust recall, ε = 0.5 | Robust recall, ε = 1.0 | Clean cost (100·FN + FP, per fold) |
 |---|---|---|---|
-| Baseline Transformer | 51.6% | 18.1% | 9,358 |
-| HAD-Stack | 70.3% | 53.0% | 13,981 |
-| FB-AT (λ = 0.5) | 70.6% | 50.8% | 12,903 |
-| FB-AT (λ = 0.66) | 70.1% | 51.3% | 14,221 |
+| Baseline Transformer | 51.6% | 18.2% | 9,358 |
+| HAD-Stack | 70.2% | 52.0% | 14,041 |
+| FB-AT (λ = 0.5) | 70.7% | 51.5% | 12,803 |
+| FB-AT (λ = 0.66) | 70.6% | 52.4% | 13,602 |
+
+Two-mode order parameter: the transition fields Δ₁ = Re⟨a†b⟩, Δ₂ = Re⟨a†c⟩ of the paper's Eqs. (7)–(8)
+(`HCS_ORDER=adagb`, the default; budget range ε = λ ∈ [0.3686, 0.6428]).
 
 - **Robustness vs. the undefended detector:** a large, consistent gain in every seed and fold
-  (paired bootstrap at ε = 1.0: +34.9 points, 95% CI [+33.4, +36.2]).
-- **Is it the Hamiltonians?** No. Fixed-budget training with the same attack weights and a non-Hamiltonian controller driven by the same
-  signal are equally robust (paired differences at ε = 1.0: +0.2 and -0.3 points, not significant),
-  and standard PGD-AT is as robust at lower clean cost. HAD-Stack does beat a linear ε ramp (all 5 folds, +7.5 points).
-  Pre-registered tests therefore do not credit the Hamiltonian controller.
+  (paired bootstrap at ε = 1.0: +33.9 points, 95% CI [+32.5, +35.2]).
+- **Is it the Hamiltonians?** No. Fixed-budget training at the controller's maximum budget and a non-Hamiltonian controller
+  driven by the same signal are as robust (paired differences at ε = 1.0 within ±0.5 points), and
+  pre-registered tests credit the Hamiltonian controller only against a linear ε ramp (all 5 folds).
 - **Cost:** every defence trades clean detection for robustness.
-- **Evaluation note:** a 10-step attack overstated HAD-Stack's robustness up to ~10× (gradient masking); all reported
+- **Evaluation note:** a 10-step attack overstated HAD-Stack's robustness about 10× (gradient masking); all reported
   numbers use the worst-case ensemble.
 
 The data are **synthetic** and near-separable; perturbations are in standardised feature units. See the paper for all
@@ -107,6 +109,11 @@ repository root unless stated otherwise. They need only `requirements.txt`, plus
 | `regression/` | Study A on the bond-yield forecaster (Two-Head LSTM of the forecasting baseline), with stored results; see *Regression study* below | Sections V-F, VII-D, Tables X–XIII, Figs. 6–8 |
 | `data/` | Bond data released with the forecasting baseline, and its notebook | Section V-F |
 | `replication/` | Re-runs the forecasting baseline's notebook and six-model protocol | — |
+| `two_mode_convergence.py` | Self-consistent iteration of the H1/H2 transition fields from four starts at three coupling scales, both spectral treatments → `results/hamiltonian_layer/two_mode_convergence.json` | Hamiltonian layer, convergence |
+| `theory/verify_theorems_adagb.py` | Theorem 1 (closed form for Δ ≥ 0), Theorem 2 applied to the H1/H2 transition fields (measured Lipschitz constant, fixed points, contraction factors), Corollary 1 at the fixed point → `results/hamiltonian_layer/verify_theorems_adagb.json` | Theorems 1–2, Corollary 1 |
+| `studyb_targets.py` | Study B target ground states (Hermitian treatment, transition fields at their fixed points) → `results/hamiltonian_layer/studyb_targets.json/.npz` | Study B data, self-consistent solutions table |
+| `upi_loop_diag.py`, `make_fig_dynamics.py` | Per-round loop diagnostics of the UPI confirmation runs (seeds 1–3), reproduced exactly, and the dynamics figure | Results of Study A, the game loop |
+| `studyb_dimsweep.py`, `make_dimsweep_report.py` | Study B dimension sweep: the latent-space game on FC-VQC Q-VAEs at d ∈ {4, 9, 16, 25}, five seeds, random Hamiltonians matched in spectral range, exact gradients; table and figure → `results/studyb_dimsweep/` | Study B, dimension sweep |
 | `theory/verify_theorems.py` | Numerical check of Theorems 1–3 and Corollary 1 | Sections IV-B, IV-E, V-D, VI-E |
 | `controller_pytorch/` | Earlier stand-alone PyTorch prototype of the regression game (exploratory, not the source of the paper's numbers) | — |
 | `paper/` | LaTeX source (IEEEtran, two-column), `refs.bib` and the three regression figures | — |
