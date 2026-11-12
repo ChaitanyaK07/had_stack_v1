@@ -275,7 +275,7 @@ def grad_fd_or_old(model, lossfn, mode, delta=1e-5):
 
 # ============================================================ one run
 def run(family_name, d, seed, variant="game", model_kind="fcvqc", leader="both", payoff="energy", follower="exact",
-        epochs=30, eps=0.1, eta=0.05, n_states=16, complex_enc=True, log=False):
+        epochs=30, eps=0.1, eta=0.05, n_states=16, complex_enc=True, log=False, ret_model=False):
     """variant: game (Algorithm 6), noattack (dz = 0), standard (sampled clean ELBO)."""
     Hs, xs, info = family(family_name, d, seed, n_states)
     codec = Codec(d, complex_enc); m = max(2, int(round(math.sqrt(d))))
@@ -308,6 +308,7 @@ def run(family_name, d, seed, variant="game", model_kind="fcvqc", leader="both",
         traj.append(dict(epoch=ep, dE=float(np.mean(dEs)) if dEs else float("nan"), loss=float(np.mean(ls)),
                          qpso=used.count("QPSO"), als=used.count("ALS"), sec=time.perf_counter() - t0))
         if log: print(f"[{family_name} d={d} s={seed} {variant}/{model_kind}/{leader}/{payoff}/{follower}] ep {ep} dE {traj[-1]['dE']:+.4f} loss {traj[-1]['loss']:.4f} ({traj[-1]['sec']:.1f}s)", flush=True)
+    if ret_model: return model, game, V, X, Hr, codec
     ev = evaluate(model, game, V, X, Hr, seed)
     circ, cls = model.counts()
     wre = [float(np.ptp(np.linalg.eigvalsh(h))) for h in Hr.numpy()]

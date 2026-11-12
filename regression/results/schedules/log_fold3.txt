@@ -1,0 +1,17 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794400300.709232    4208 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794400302.116808    4208 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+fold3/s1 HAD done, best round 8
+fold3/s1 linear ramp done, best round 30
+fold3/s1 cosine ramp done, best round 30
+fold3/s1 const 0.3686 done, val rRMSE 1.2486
+fold3/s1 const 0.5000 done, val rRMSE 0.6281
+fold3/s1 const 0.6428 done, val rRMSE 0.4381
+WARNING:tensorflow:5 out of the last 14 calls to <function make_pgd.<locals>.objective at 0x7f380bc99940> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+fold3/s1 Two-Head LSTM (undefended)   RMSE 4.664 | wcRMSE 9.699/12.277 | broken 67.9/77.9
+fold3/s1 HAD-Stack                    RMSE 1.704 | wcRMSE 6.405/10.598 | broken 41.2/69.5
+fold3/s1 Linear ramp                  RMSE 3.685 | wcRMSE 8.253/11.363 | broken 44.3/69.5
+fold3/s1 Cosine ramp                  RMSE 3.580 | wcRMSE 8.331/11.339 | broken 43.5/69.5
+fold3/s1 Tuned constant               RMSE 0.836 | wcRMSE 5.720/10.036 | broken 36.6/67.9
+fold3/s1 tuned eps 0.6428; minutes 22.8

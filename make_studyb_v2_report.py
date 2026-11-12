@@ -80,8 +80,8 @@ for fam, d in (("H1", 4), ("HV", 16)):
 
 # ---------------------------------------------------------------- 2. Fig. 15 (H1, fidelity vs budget)
 eps = ["0.02", "0.05", "0.1", "0.15", "0.2", "0.3"]
+plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
 fig, ax = plt.subplots(1, 2, figsize=(6.6, 2.4))
-plt.rcParams.update({"font.family": "serif", "font.size": 8})
 col = {"game": "#2f6fd0", "standard": "#8a8a8a", "noattack": "#e8643c"}
 lab = {"game": "Stackelberg-trained", "standard": "standard Q-VAE", "noattack": "no attack ($\\delta z{=}0$)"}
 P("\n## 2. H1: fidelity under the ALS+QPSO attack vs budget (seeds 1-5; mean [min, max])\n")
